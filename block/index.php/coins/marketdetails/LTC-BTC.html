@@ -1,0 +1,1781 @@
+<!doctype html>
+<html>
+
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--load meta data and contents-->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+    	<title>Obbip Blockchain - LTC-BTC Market</title>
+   	 <!-- Bootstrap -->
+	<link href="../../../css/bootstrap.css" rel="stylesheet">
+	<link href="../../../css/main.css" rel="stylesheet">
+	<link href="../../../css/responsive.css" rel="stylesheet">
+	<link href="../../../css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../../css/select2.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,700" rel="stylesheet">
+
+	<script src="../../../js/jquery-1.11.3.min.js"></script>
+		
+		
+  </head>
+
+<body>
+ <header class="commonheader fullwidth">
+ 	<div class="main-container">
+ 	<div class="col-md-4 col-sm-9 col-xs-9">
+ 		<div class="headerlogo">
+ 			<a href="../../../index.html"><img src="../../../userdata/logo/logo.png" alt="obbip Blockchain" title="Obbip Blockchain"></a>
+ 		</div>
+ 		</div>
+ 		<div class="menuright col-md-8 col-sm-3 col-xs-3">
+	        <div class="mobile-menu maingraycolor hidden-md visible-sm visible-xs">
+ 		<i class="fa fa-bars"></i>
+ 		<i class="fa fa-times"></i>
+ 		</div>
+ 			<ul class="menuUl list-unstyled barlowbold" id="menuUl">
+ 	<li class="menu-li"><a href="../../../index.html" class="menu-a maingraycolor ">Home </a></li>
+	<li class="menu-li"><a href="../markets.html" class="menu-a maingraycolor marketlink-a">Markets&nbsp; <i class="fa fa-bar-chart"></i>
+
+	</a>
+	
+	</li>
+
+
+<li class="menu-li"><a href="../../home/howitworks.html" class="menu-a maingraycolor">How It Works</a></li>
+ <li class="menu-li"><a href="../../account/register.html" class="menu-a maingraycolor">Register</a></li> 
+<li class="menu-li"><a href="../../account/login.html" class="signinbtn btn-main btn barlowbold">Login</a></li> 
+
+   
+<!--LANGUAGE SECTION-->
+
+<li class="menu-li">
+	<div class="menulangugesl">
+	<span class="menlangicn"><i class="fa fa-globe"></i></span>
+		<select class="langugselct custom-select" style="width: 100%" id="publiclanguage" onchange="changeCurrentLanaguage()">
+<option value="1"  selected="selected"  >
+English</option>
+<option value="2"  >
+Spanish</option>
+<option value="3"  >
+French</option>
+<option value="4"  >
+Japanese</option>
+			
+		</select>
+		</div>
+ </li>   
+  
+<!--LANGUAGE SECTION-->                                                    
+ 				                                   
+ 			</ul>
+ 		</div>
+ 	</div>
+ 	<div class="headeroverlay"></div>
+ </header>
+
+<script type="text/javascript">
+		$(function(){
+    var current = location.pathname;
+    current = current.substring(current.lastIndexOf('../../../index.html'));
+    
+
+    $('.menu-li a').each(function(){
+        var $this = $(this);
+        		var currentHref = $this.attr('href');
+		        if (typeof currentHref != "undefined") {
+		currentHref = currentHref.substring(currentHref.lastIndexOf('../../../index.html'));
+		$this.removeClass('active');     
+            if(currentHref == current) {
+       $this.addClass('active');
+			}
+			
+
+
+		}
+    });
+});
+	
+function logout()
+{
+	$.ajax({
+	type: "POST",cache: false,
+	url:"http://inout-blockchain-altexchanger.demo.inoutscripts.net/index.php/account/logoutprocess",	
+		success: function(data)
+		{
+data=data.trim();
+
+
+		if(data=="success")
+		{
+		var redirecturl="../../account/login.html";
+		window.location.href = redirecturl;
+		}
+		}
+	});
+}
+
+</script>
+<style>
+    body {
+        background-color: #eee;
+    }
+</style>
+<script src="../../../js/jquery.cookie.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+  var amchart_enable = '0';
+  var tradingview_enable = '1';
+  if(amchart_enable=='1' && tradingview_enable=='1'){
+  $('.accountrightTabs li').each(function () {
+    if ($(this).hasClass('active')) {
+      var currentactivetab = $(this).attr('id');
+      var cookietab = $.cookie('charttabid');
+      if (typeof cookietab != 'undefined'){//cookie is set
+        if(currentactivetab!=cookietab){
+          //Remove any "active" class
+          $(this).removeClass("active");
+          var inactiveTab =   $(this).find("a").attr("href");
+          $(inactiveTab).removeClass("active in");
+
+          $("#"+cookietab).addClass("active").show(); //Activate cookie tab
+          var activeTab = $("#"+cookietab).find("a").attr("href"); //Find the rel attribute value to identify the active tab + content
+          $(activeTab).addClass("active in").show(); //Fade in the active content
+        }
+
+    }
+    }
+  });
+}
+  $('.accountrightTabs li').on("click",function(){//new chart is clicked by user
+    var charttabid =  $(this).attr("id");
+    $.cookie('charttabid', charttabid, { expires: 365, path: '/' });//set new cookie
+  })
+});
+
+</script>
+<section class="mainareawraper fullwidth pull-left">
+    <div class="fullwidth pull-left ">
+        <div class="marketdetails-wraper fullwidth pull-left ">
+            <div class="marketDleft">
+                <div class="marketDleftIn">
+                    <div class="mrktcnname col-xs-12">
+                        <h3 class="mrktnmeH1 barlowbold">Bitcoin (BTC) </h3>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="market-statswrp mgnB15">
+                        <div class="mrktstrow fullwidth pull-left ">
+                            <div class="mrktstclm marktstleft col-xs-6">
+                        <span id="LastTransactionProgress">
+                                                      <h4
+                                     class="mrktsth4 barlowbold red-color">Last                                 &nbsp;<i class="fa fa-arrow-down"></i></h4>
+                                                </span>
+
+                                <div class="clearfix"></div>
+                                <h4 class="martclmsub">
+                                    <span id="LastTransaction">126.98412698</span> LTC                                </h4>
+                            </div>
+                            <div class="mrktstclm marktstright col-xs-6">
+                                <h4 class="mrktsth4 barlowbold">
+                                  Vol</h4>
+                                <div class="clearfix"></div>
+                                <h4 class="martclmsub">
+                                    <span id="Volume">1663.357</span> BTC                                </h4>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="mrktstrow fullwidth pull-left ">
+                            <div class="mrktstclm marktstleft col-xs-6">
+                       <span id="LastBidProgress">
+                                                      <h4
+                                     class="mrktsth4 barlowbold green-color">Bid                                 &nbsp;<i class="fa fa-arrow-up"></i></h4>
+                                                </span>
+
+                                <div class="clearfix"></div>
+                                <h4 class="martclmsub">
+                                  <span id="LastBid">126.98412698</span> LTC                                </h4>
+
+                            </div>
+                            <div class="mrktstclm marktstright col-xs-6">
+                       <span id="LastAskProgress">
+                                                      <h4
+                                     class="mrktsth4 barlowbold red-color">Ask                                 &nbsp;<i class="fa fa-arrow-down"></i></h4>
+                                                </span>
+                                <div class="clearfix"></div>
+                                <h4 class="martclmsub">
+                                   <span id="LastAsk">126.98412698</span> LTC                                </h4>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="mrktstrow fullwidth pull-left ">
+                            <div class="mrktstclm marktstleft col-xs-6">
+                                <h4 class="mrktsth4 barlowbold ">
+                                  24h High<!--24h High--></h4>
+                                <div class="clearfix"></div>
+                                <h4 class="martclmsub">
+                                    <span id="HighestOfLastDay">127.63241863</span> LTC                                </h4>
+                            </div>
+                            <div class="mrktstclm marktstright col-xs-6">
+                                <h4 class="mrktsth4 barlowbold">
+                                  24h Low<!--24h Low--></h4>
+                                <div class="clearfix"></div>
+                                <h4 class="martclmsub">
+                                    <span id="LowestOfLastDay">126.50221379</span> LTC                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class=" col-xs-12 mgnB10">
+                        <h3 class="text-center barlowbold mgnT0 mgnB10">
+                          Trading<!--Trading --></h3>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="marketsttsTabwrp fullwidth pull-left">
+                        <ul class="nav nav-tabs marktsttabnav">
+                            <li class="active"><a
+                                        class="maintextcolor barlowbold"
+                                        data-toggle="tab" href="#buytab"><i
+                                            class="fa fa-plus"></i>&nbsp;&nbsp; Buy BTC                                </a>
+                            </li>
+                            <li><a class="maintextcolor barlowbold"
+                                   data-toggle="tab" href="#selltab"><i
+                                            class="fa fa-minus"></i>&nbsp;&nbsp;Sell BTC                                </a>
+                            </li>
+
+                        </ul>
+
+                        <div class="tab-content fullwidth pull-left">
+                            <div class="mrksttabIn fullwidth pull-left">
+                                <div id="buytab"
+                                     class="tab-pane fade in active">
+                                                                      <div class="clearfix"></div>
+                                    <div class="tabfrmwrp fullwidth pull-left">
+
+                                        <div class="tabfrmrow mgnB10">
+                                            <input type="hidden"
+                                                   name="confirm_commisionset"
+                                                   id="confirm_commisionset">
+
+                                            <label  class="tabfrmwrp-label">Units</label>
+                                            <div class="input-group selectinptgrp">
+                                                <div class=" selectcstmgrp"
+                                                     onclick="setMaxUnitsToBuy()">
+                                                    <button class="btn btn-default maxbtn"
+                                                            style="width: 100%">MAX</button>
+                                                </div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="quantity_Buy"
+                                                       id="quantity_Buy"
+                                                       onchange="gettotalbidprice(1)"
+                                                       value="0.00000000"
+                                                       placeholder="0.00000000  ">
+                                                <span class="input-group-addon">BTC</span>
+                                            </div>
+                                            <p class="splnotep text-danger taberormsg"
+                                               style="display:none "></p>
+                                        </div>
+                                        <div class="tabfrmrow mgnB10">
+                                            <label class="tabfrmwrp-label">Bid</label>
+                                            <div class="input-group selectinptgrp">
+                                                <div class=" selectcstmgrp">
+                                                    <select class="custom-select"
+                                                            name="priceconditionbuy"
+                                                            id="priceconditionbuy"
+                                                            style="width: 100%">
+                                                        <option value="" selected>Price</option>
+                                                        <!--Price-->
+                                                        <option value="1_1">Last</option>
+                                                        <!--Last-->
+                                                        <option value="2_1">Bid</option>
+                                                        <!--Bid-->
+                                                        <option value="3_1">Ask</option>
+                                                        <!--Ask-->
+                                                    </select>
+                                                </div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="price_Buy"
+                                                       id="price_Buy"
+                                                       placeholder="0.00000000 "
+                                                       value="0.00000000"
+                                                       onchange="gettotalbidprice(2)">
+                                                <span class="input-group-addon">LTC</span>
+                                            </div>
+                                            <p class="splnotep text-danger taberormsg"
+                                               style="display:none ">Bids must be greater than .00000001 for limit orders</p>
+                                        </div>
+                                        <div class="tabfrmrow mgnB10">
+                                            <label class="tabfrmwrp-label">Type</label>
+                                            <div class="input-group">
+                                                <label class="radio-inline">
+
+                                                    <input id="buyconditional1"
+                                                           class="typechange"
+                                                           type="radio"
+                                                           value="1"
+                                                           name="buyconditional"
+                                                           onclick="buyshowhide(1)"
+                                                           checked>
+                                                  Limit (Default)                                                </label>
+                                                <label class="radio-inline">
+                                                    <input id="buyconditional"
+                                                           class="typechange"
+                                                           value="2"
+                                                           type="radio"
+                                                           name="buyconditional"
+                                                           onclick="buyshowhide(2)">
+                                                  Conditional                                                </label>
+
+
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div id="conditionalwrp"
+                                                 class="conditionalwrp mgnT10"
+                                                 style="display: none">
+                                                <div class="tabfrmrow mgnB10">
+                                                    <label class="tabfrmwrp-label">Buy when</label>
+                                                    <div class="input-group selectinptgrp">
+                                                        <div class=" selectcstmgrp">
+                                                            <select class="custom-select"
+                                                                    name="ordercondition"
+                                                                    id="ordercondition"
+                                                                    style="width: 100%">
+                                                                <option value="1">None</option>
+                                                                <option value="3">Greater Than Or Equal To</option>
+                                                                <option value="2">Less Than Or Equal To</option>
+                                                            </select>
+                                                        </div>
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="target_Buy"
+                                                               id="target_Buy"
+                                                               placeholder="0.00000000">
+                                                        <span class="input-group-addon">LTC</span>
+
+                                                    </div>
+                                                    <p class="splnotep text-danger taberormsg"
+                                                       style="display:none "></p>
+                                                </div>
+                                            </div>
+
+
+
+                                            <input type="hidden" name="type"
+                                                   id="type" value="buy">
+
+                                            <input type="hidden"
+                                                   name="balencebasecoinvaluenew"
+                                                   id="balencebasecoinvaluenew"
+                                                   value="">
+                                            <input type="hidden"
+                                                   name="balencetradecoinvaluenew"
+                                                   id="balencetradecoinvaluenew"
+                                                   value="">
+
+                                        </div>
+                                        <div class="tabfrmrow mgnB10">
+                                            <label class="tabfrmwrp-label">Total</label>
+                                            <div class="input-group">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="total_Buy"
+                                                       id="total_Buy"
+                                                       value="0.00000000"
+                                                       placeholder="0.00000000 "
+                                                       onchange="gettotalbidprice(3)">
+                                                <span
+                                                        class="input-group-addon">LTC</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="tabfrmrow mgnB10">
+                                                                                        <button id="submit"
+                                                      class="btn btn-main fullwidth barlowsemibold"
+                                                      onclick="gotologin()">Buy Bitcoin</button>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="selltab" class="tab-pane fade">
+                                  
+                                    <div class="clearfix"></div>
+                                    <div class="tabfrmwrp fullwidth pull-left">
+
+                                        <div class="tabfrmrow mgnB10">
+                                            <label
+                                                    class="tabfrmwrp-label">Units</label>
+                                            <div class="input-group selectinptgrp">
+                                                <div class=" selectcstmgrp"
+                                                     onclick="setMaxUnitsSell()">
+                                                    <button class="btn btn-default maxbtn"
+                                                            style="width: 100%">MAX</button>
+                                                </div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="quantity_Sell"
+                                                       id="quantity_Sell"
+                                                       onchange="gettotalaskprice(1)"
+                                                       value="0.00000000"
+                                                       placeholder="0.00000000  ">
+                                                <span
+                                                        class="input-group-addon">BTC</span>
+
+                                            </div>
+                                            <p class="splnotep text-danger taberormsg"
+                                               style="display:none "></p>
+                                        </div>
+
+                                        <div class="tabfrmrow mgnB10">
+                                            <label
+                                                    class="tabfrmwrp-label">Ask</label>
+                                            <div class="input-group selectinptgrp">
+                                                <div class=" selectcstmgrp">
+                                                    <select class="custom-select" name="priceconditionsell" id="priceconditionsell"
+                                                            style="width: 100%">
+                                                        <option value="" selected>Price</option>
+                                                        <!--Price-->
+                                                        <option value="1_2">Last</option>
+                                                        <!--Last-->
+                                                        <option value="2_2">Bid</option>
+                                                        <!--Bid-->
+                                                        <option value="3_2">Ask</option>
+                                                        <!--Ask-->
+                                                    </select>
+                                                </div>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="price_Sell"
+                                                       id="price_Sell"
+                                                       placeholder="0.00000000"
+                                                       value="0.00000000"
+                                                       onchange="gettotalaskprice(2)">
+                                                <span class="input-group-addon">LTC</span>
+
+                                            </div>
+                                        <p class="splnotep text-danger taberormsg" style="display:none ">Bids must be greater than .00000001 for limit orders</p>
+                                        </div>
+
+                                        <div class="tabfrmrow mgnB10">
+                                            <label class="tabfrmwrp-label">Type</label>
+
+
+                                            <div class="input-group">
+                                                <label class="radio-inline">
+                                                    <input id="sellconditional1"
+                                                           class="typechange"
+                                                           type="radio"
+                                                           value="1"
+                                                           name="sellconditional"
+                                                           onclick="sellshowhide(1)"
+                                                           checked> Limit (Default)                                                </label>
+                                                <label class="radio-inline">
+                                                    <input id="sellconditional"
+                                                           class="typechange"
+                                                           value="2"
+                                                           type="radio"
+                                                           name="sellconditional"
+                                                           onclick="sellshowhide(2)"> Conditional                                                </label>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                            <div id="sellconditionalwrp"
+                                                 class="conditionalwrp mgnT10"
+                                                 style="display: none">
+                                                <div class="tabfrmrow mgnB10">
+                                                    <label
+                                                            class="tabfrmwrp-label">Sell when </label>
+                                                    <div class="input-group selectinptgrp">
+                                                        <div class=" selectcstmgrp">
+                                                            <select class="custom-select"
+                                                                    style="width: 100%"
+                                                                    name="sell_ordercondition"
+                                                                    id="sell_ordercondition">
+
+                                                                <option
+                                                                        value="1">None</option>
+                                                                <option
+                                                                        value="3">Greater Than Or Equal To</option>
+                                                                <option
+                                                                        value="2">Less Than Or Equal To</option>
+                                                            </select>
+                                                        </div>
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="target_Sell"
+                                                               id="target_Sell"
+                                                               placeholder="0.00000000  ">
+                                                        <span class="input-group-addon">LTC</span>
+
+                                                    </div>
+                                                    <p class="splnotep text-danger taberormsg"
+                                                       style="display:none "></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tabfrmrow mgnB10">
+                                            <label class="tabfrmwrp-label">
+                                              Total<!--total--></label>
+                                            <div class="input-group">
+                                                <input name="total_Sell"
+                                                       id="total_Sell"
+                                                       type="text"
+                                                       class="form-control"
+                                                       value="0.00000000"
+                                                       onchange="gettotalaskprice(3)"
+                                                       placeholder="0.00000000  ">
+                                                <span
+                                                        class="input-group-addon">LTC</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="tabfrmrow mgnB10">
+
+
+                                                                                        <button class="btn btn-main fullwidth barlowsemibold"
+                                                      onclick="gotologin()"> Sell Bitcoin</button>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- left section ends -->
+
+            <div class="marketDright">
+    
+                <div class="grphcahrtwrp fullwidth pull-left mgnB25">
+
+               <div class="fullwidth pull-left mgnB05"> <h3 class="barlowbold ">Trading Information</h3> </div>
+                  <!-- Chart loading section starts -->
+
+<ul class="nav nav-tabs accountrightTabs">
+      </ul>
+
+			<div class="tab-content fullwidth ">
+           <div id="chart2" class="tab-pane fade fullwidth active in">
+                   <div class="chartiframe-panel">
+                       <iframe class="chartiframe" id="chart2"
+                                 src="../../../application/third_party/Chart/TradingView/index2619.html?marketsymbol=LTC-BTC"
+                               style="border:none;" width="100%"
+                               height="100%"></iframe>
+                   </div>
+                   </div><!--chart2 ends-->
+
+         
+                </div>
+
+                </div>                    <!-- Chart div ends -->
+                <div class="clearfix"></div>
+                <div class="fullwidth pull-left tabledash mgnB25">
+                    <div class="fullwidth pull-left mgnB05">
+                        <h3 class="barlowbold ">Order Book</h3>
+                        <!--Order Book-->
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-12 ordrbkclm">
+                            <div class="fullwidth pull-left mgnB05">
+                                <h4  class="barlowbold mgnT0">Bid</h4>
+                                <!--Bids-->
+
+                            </div>
+                            <div class="table-div fullwidth pull-left">
+
+                                <table class=" dytable table " cellpadding='0'
+                                       cellspacing='0' id="biddatatable">
+                                    <thead>
+                                    <tr>
+                                        <th><i class="fa fa-caret-down"
+                                               aria-hidden="true"></i></th>
+                                        <th>Price (LTC)</th>
+                                        <!--Price-->
+                                        <th>Size (BTC)</th>
+                                        <!--Size-->
+                                        <th>Total (LTC)</th>
+                                        <!--Total-->
+                                        <th>Sum (LTC)</th>
+                                        <!--Sum-->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xs-12 ordrbkclm">
+                            <div class="fullwidth pull-left mgnB05">
+                                <h4  class="barlowbold mgnT0">Ask</h4>
+                                <!--Ask-->
+
+                            </div>
+                            <div class="table-div fullwidth pull-left">
+
+                                <table class="dytable table" cellpadding="0"
+                                       cellspacing="0" id="asksdatatable">
+                                    <thead>
+                                    <tr>
+                                        <th><i class="fa fa-caret-down" aria-hidden="true"></i></th>
+                                        <th>Price (LTC)</th>
+                                        <!--Price-->
+                                        <th>Size (BTC)</th>
+                                        <!--Size-->
+                                        <th>Total (LTC)</th>
+                                        <!--Total-->
+                                        <th>Sum (LTC)</th>
+                                        <!--Sum-->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--  Order Book ends -->
+                <div class="clearfix"></div>
+              
+                <!--  Open orders ends -->
+                <div class="clearfix"></div>
+                <div class="fullwidth pull-left tabledash mgnB25">
+                    <div class="fullwidth pull-left mgnB05">
+                        <h3 class="barlowbold ">Market Trade History</h3>
+                        <!--Market Trade History-->
+
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="table-div fullwidth pull-left">
+                        <table class="dytable table" cellpadding='0'
+                               cellspacing='0' id="alltradesdatatable">
+                            <thead>
+                            <tr>
+                                <th> Closed Date</th>
+                                <!--Closed Date-->
+                                <th>Type</th>
+                                <!--Type-->
+                                <th> Bid/Ask                                    &nbsp;(LTC)
+                                </th><!--Bid/Ask-->
+                                <th>Units Total                                    &nbsp;(BTC)
+                                </th><!--Units Total-->
+                                <th>Total Cost                                    &nbsp;(LTC)
+                                </th><!--Total Cost-->
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <!--  Market History ends -->
+                <div class="clearfix"></div>
+                              <!-- 	My Order History ends -->
+                <div class="clearfix"></div>
+
+
+            </div>
+
+            <!-- right section ends -->
+        </div>
+
+    </div>
+</section>
+
+<!-- model popup -->
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <input type="hidden" name="confirm_ordertype" id="confirm_ordertype"
+               value="">
+        <input type="hidden" name="confirm_conditiontype"
+               id="confirm_conditiontype" value="">
+        <input type="hidden" name="confirm_ordercondition"
+               id="confirm_ordercondition" value="">
+        <input type="hidden" name="confirm_marketid" id="confirm_marketid"
+               value="9">
+
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title"><span id="confirm_type1">Limit Sell</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <h4 class="mdllsttp">
+                    <span class="barlowbold"><!--Type-->Type                        :</span> <span id="confirm_type"></span>
+                </h4>
+                <h4 class="mdllsttp">
+                    <span class="barlowbold"><!--Market-->Market                        :</span> <span id="confirm_marketname"></span>
+                </h4>
+
+                <div class="modlpopfrmwrp fullwidth mgnT20">
+                    <div class="tabfrmrow modlpopfrmrow mgnB10">
+                        <label class="tabfrmwrp-label">Quantity                            : </label><!--Quantity-->
+                        <div class="input-group">
+                            <input id="confirm_quantity" class="form-control"
+                                   name="confirm_quantity"
+                                   placeholder="0.00000000 "
+                                   type="text" readonly="readonly">
+                            <span
+                                    class="input-group-addon">BTC</span>
+                        </div>
+                    </div>
+                    <div class="tabfrmrow modlpopfrmrow mgnB10">
+                        <label
+                                class="tabfrmwrp-label">Price</label>
+                        <!--Price-->
+                        <div class="input-group">
+                            <input id="confirm_price" class="form-control"
+                                   name="confirm_price"
+                                   placeholder="0.00000000"
+                                   type="text" readonly="readonly">
+                            <span
+                                    class="input-group-addon">LTC</span>
+                        </div>
+                    </div>
+                    <div class="tabfrmrow modlpopfrmrow mgnB10">
+                        <label
+                                class="tabfrmwrp-label">Subtotal</label>
+                        <!--Subtotal-->
+                        <div class="input-group">
+                            <input id="confirm_subtotal" class="form-control"
+                                   name="confirm_subtotal"
+                                   placeholder="0.00000000 "
+                                   type="text" readonly="readonly">
+                            <span
+                                    class="input-group-addon">LTC</span>
+                        </div>
+                    </div>
+
+
+                    <div class="tabfrmrow modlpopfrmrow mgnB10"
+                         id="conditioanldiv" style="display:none">
+                        <label
+                                class="tabfrmwrp-label">Conditional Price</label>
+                        <div class="input-group">
+                            <input id="confirm_conditionalprice"
+                                   class="form-control"
+                                   name="confirm_conditionalprice"
+                                   placeholder="0.00000000 "
+                                   type="text" readonly="readonly">
+                            <span class="input-group-addon confirm_basecoinsymbol"></span>
+
+                        </div>
+                    </div>
+
+                    <div class="tabfrmrow modlpopfrmrow mgnB10">
+                        <label
+                                class="tabfrmwrp-label">Commission</label>
+                        <!--Commission-->
+                        <div class="input-group">
+                            <input id="confirm_commision" class="form-control"
+                                   name="confirm_commision"
+                                   placeholder="0.00000000"
+                                   type="text" readonly="readonly">
+                            <span
+                                    class="input-group-addon">LTC</span>
+                        </div>
+                    </div>
+                    <div class="tabfrmrow modlpopfrmrow mgnB10">
+                        <label
+                                class="tabfrmwrp-label">Total</label>
+                        <!--Total-->
+                        <div class="input-group">
+                            <input id="confirm_total" class="form-control"
+                                   name="confirm_total"
+                                   placeholder="0.00000000"
+                                   type="text" readonly="readonly">
+                            <span
+                                    class="input-group-addon">LTC</span>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="clearfix"></div>
+                <div class="alert alert-warning">
+                    <h4>Disclaimer<!--Disclaimer--></h4>
+                    <p>Please verify this order before confirming. All orders are final once submitted and we will be unable to issue you a refund.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-main"
+                        id="confirm">Confirm</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- model popup ends -->
+
+
+<!-- delete confirmation box start-->
+
+<button id="deleteButton" type="button" class="btn btn-info btn-lg"
+        data-toggle="modal" data-target="#deletePopUp"
+        style="display: none;"></button>
+<div id="deletePopUp" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content generalModal">
+            <div class="modal-header" align="center">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="warningMessage"><span
+                            class='text-danger'>Are you sure  you want to cancel this order?</span>
+                </h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"
+                        data-dismiss="modal">No</button>
+                <button id="approveBtn" type="button" class="btn btn-danger"
+                        data-dismiss="modal">Yes</button>
+            </div>
+        </div>
+        <span id="cancelerrmsg"
+              style="display:none">Sorry,You don't have privilage to cancel this order.</span>
+        <span id="cancelesuccmsg"
+              style="display:none">Order has been sucessfully cancelled.</span>
+    </div>
+</div>
+
+<!-- delete confirmation box end-->
+
+
+<link href="../../../css/dataTables.min.css" rel="stylesheet">
+<script src="../../../js/dataTables.min.js"></script>
+<script type="text/javascript">
+  function buyshowhide(id) {
+    if (id == 2) {
+      $("#conditionalwrp").css("display", "block");
+    }
+    else {
+      $("#conditionalwrp").css("display", "none");
+    }
+  }
+
+  function sellshowhide(id) {
+    if (id == 2) {
+      $("#sellconditionalwrp").css("display", "block");
+    }
+    else {
+      $("#sellconditionalwrp").css("display", "none");
+    }
+  }
+
+
+  $(function () {
+    function sdhft() {
+      if ($(window).width() > 1200) {
+        $('.marketDright').css({
+          "min-height": 10
+        });
+        var mrklftheight = $('.marketDleft').outerHeight(true) + 70;
+        $('.marketDright').css({
+          "min-height": mrklftheight
+        });
+
+      }
+      else {
+        $('.marketDright').css({
+          "min-height": 10
+        });
+      }
+    }
+
+    sdhft();
+    $(window).resize(function () {
+      sdhft();
+    });
+  });
+
+</script>
+<!-- Additional sections Starts Here -->
+<script type="text/javascript">
+  var installpath = '../../index.html';
+  var marketid = '9';
+  var marketidsecret = 'OQ==';
+  var balencebasecoinvalue = "";
+  var balencetradecoinvalue = "";
+  var marketname = "LTC-BTC";
+  var BaseCoinSymbol = "LTC";
+  var TradeCoinSymbol = "BTC";
+  var min_order_size = "0.00009";
+  var sell_profit_percentage = "0.10";
+  var buy_profit_percentage = "0.10";
+  var loginstatus = '0';
+  var roundfigure = '8';
+  if (BaseCoinSymbol != "BTC") {
+    $(".usdtequivalent").hide();
+  }
+
+</script>
+<script src="../../../js/market.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function () {
+
+
+//LOAD BIDS STARTS
+    var tablebids = $('#biddatatable').DataTable({
+      ajax: {
+        url: installpath + 'coins/getBidsOfMarket/' + marketidsecret,
+        dataSrc: 'bid'
+      },
+      columns: [
+
+        {
+          "data": "detailsStr", render: function (data, type, row) {
+          return '<button class="btn btn-default btn-sm" onclick="useThisAskvalue(this.id)" id="' + data + '"><i class="fa fa-caret-down" aria-hidden="true"></i></button>'
+        }
+        },
+        {
+          "data": "price", render: function (data, type, row) {
+          return '<span class="mobilehead">Price</span><span onclick="setPriceFromDatatable(' + data + ')">' + data + '</span>'
+        }
+        },
+        {
+          "data": "size", render: function (data, type, row) {
+          return '<span class="mobilehead">Size</span><span onclick="setUnitsFromDatatable(' + data + ')">' + data + '</span>'
+        }
+        },
+        {
+          "data": "total", render: function (data, type, row) {
+          return '<span class="mobilehead">Total</span>' + data
+        }
+        },
+        {
+          "data": "sum", render: function (data, type, row) {
+          return '<span class="mobilehead">Sum</span>' + data
+        }
+        }
+      ],
+      rowId: 'datarowid',
+      responsive: true, "bAutoWidth": false,
+      retrieve: true,
+      "language": {
+          "decimal":        "",
+                           "emptyTable":     "No Results Found.",
+                           "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+                           "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                           "infoFiltered":   "(filtered from _MAX_ total entries)",
+                           "infoPostFix":    "",
+                           "thousands":      ",",
+                           "lengthMenu":     "Show _MENU_ Entries",
+                           "loadingRecords": "Loading...",
+                           "processing":     "Processing...",
+                           "search":         "Search:",
+                           "zeroRecords":    "No matching records found",
+                           "paginate": {
+                               "first":      "First",
+                               "last":       "Last",
+                               "next":       "Next",
+                               "previous":   "Previous"
+                           },
+                           "aria": {
+                               "sortAscending":  ": activate to sort column ascending",
+                               "sortDescending": ": activate to sort column descending"
+                           }      },
+    });
+
+//LOAD ASKS STARTS
+    var tableasks = $('#asksdatatable').DataTable({
+      ajax: {
+        url: installpath + 'coins/getAsksOfMarket/' + marketidsecret,
+        dataSrc: 'ask'
+      },
+      columns: [
+        {
+          "data": "detailsStr", render: function (data, type, row) {
+          return '<button class="btn btn-default btn-sm" onclick="useThisBidvalue(this.id)" id="' + data + '"><i class="fa fa-caret-down" aria-hidden="true"></i></button>'
+        }
+        },
+        {
+          "data": "price", render: function (data, type, row) {
+          return '<span class="mobilehead">Price</span><span onclick="setPriceFromDatatablesell(' + data + ')">' + data + '</span>'
+        }
+        },
+        {
+          "data": "size", render: function (data, type, row) {
+          return '<span class="mobilehead">Size</span><span onclick="setUnitsFromDatatablesell(' + data + ')">' + data + '</span>'
+        }
+        },
+        {
+          "data": "total", render: function (data, type, row) {
+          return '<span class="mobilehead">Total</span>' + data
+        }
+        },
+        {
+          "data": "sum", render: function (data, type, row) {
+          return '<span class="mobilehead">Sum</span>' + data
+        }
+        }
+      ],
+      rowId: 'datarowid',
+      responsive: true, "bAutoWidth": false,
+      retrieve: true,
+      "language": {
+          "decimal":        "",
+                           "emptyTable":     "No Results Found.",
+                           "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+                           "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                           "infoFiltered":   "(filtered from _MAX_ total entries)",
+                           "infoPostFix":    "",
+                           "thousands":      ",",
+                           "lengthMenu":     "Show _MENU_ Entries",
+                           "loadingRecords": "Loading...",
+                           "processing":     "Processing...",
+                           "search":         "Search:",
+                           "zeroRecords":    "No matching records found",
+                           "paginate": {
+                               "first":      "First",
+                               "last":       "Last",
+                               "next":       "Next",
+                               "previous":   "Previous"
+                           },
+                           "aria": {
+                               "sortAscending":  ": activate to sort column ascending",
+                               "sortDescending": ": activate to sort column descending"
+                           }      }
+    });
+
+
+//LOAD OPEN ORDERS STARTS
+    var tableopenorder = $('#openorderdatatable').DataTable({
+      ajax: {
+        url: installpath + 'coins/getOpenOrdersOfMarket/' + marketidsecret,
+        dataSrc: 'openorder'
+      },
+      columns: [
+        {
+          "data": "orderdate", render: function (data, type, row) {
+          return '<span class="mobilehead">Order Date</span>' + data
+        }
+        },
+        {
+          "data": "type", render: function (data, type, row) {
+          return '<span class="mobilehead">Type</span>' + data
+        }
+        },
+        {
+          "data": "bidaskamount", render: function (data, type, row) {
+          return '<span class="mobilehead"> Bid/Ask </span>' + data
+        }
+        },
+        {
+          "data": "unitsfilled", render: function (data, type, row) {
+          return '<span class="mobilehead">Units Filled(BTC)</span>' + data
+        }
+        },
+        {
+          "data": "unitstotal", render: function (data, type, row) {
+          return '<span class="mobilehead">Units Total (BTC)</span>' + data
+        }
+        },
+        {
+          "data": "estimatedtotal", render: function (data, type, row) {
+          return '<span class="mobilehead">Estimated Total</span>' + data
+        }
+        },
+        {
+          "data": "id", render: function (data, type, row) {
+          return '<span class="mobilehead">Estimated Total</span><a class="btn btn-default" onclick="deleteThis(' + data + ')"><i class="fa fa-trash"></i> Cancel</a>'
+        }
+        }
+      ],
+      rowId: 'datarowid',
+      responsive: true, "bAutoWidth": false,
+      retrieve: true,
+      "language": {
+          "decimal":        "",
+                           "emptyTable":     "No Results Found.",
+                           "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+                           "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                           "infoFiltered":   "(filtered from _MAX_ total entries)",
+                           "infoPostFix":    "",
+                           "thousands":      ",",
+                           "lengthMenu":     "Show _MENU_ Entries",
+                           "loadingRecords": "Loading...",
+                           "processing":     "Processing...",
+                           "search":         "Search:",
+                           "zeroRecords":    "No matching records found",
+                           "paginate": {
+                               "first":      "First",
+                               "last":       "Last",
+                               "next":       "Next",
+                               "previous":   "Previous"
+                           },
+                           "aria": {
+                               "sortAscending":  ": activate to sort column ascending",
+                               "sortDescending": ": activate to sort column descending"
+                           }      },
+      "order": [[0, "desc"]],
+      "columnDefs": [
+        {
+          "targets": [-1],
+          "orderable": false,
+        },
+      ],
+
+    });
+
+//LOAD TRADE HISTORY STARTS
+    var tablealltrades = $('#alltradesdatatable').DataTable({
+      ajax: {
+        url: installpath + 'coins/getAllTradesOfMarket/' + marketidsecret,
+        dataSrc: 'marketclosedorder'
+      },
+      columns: [
+        {
+          "data": "closeddate", render: function (data, type, row) {
+          return '<span class="mobilehead">Closed Date</span>' + data
+        }
+        },
+        {
+          "data": "type", render: function (data, type, row) {
+          return (data=="Buy") ?'<span class="mobilehead">Type</span> <span class="green-color">' + data+'</span>'
+                       :'<span class="mobilehead">Type</span> <span class="red-color">' + data+'</span>'
+        }
+        },
+        {
+          "data": "bidaskamount", render: function (data, type, row) {
+          return '<span class="mobilehead">Bid/Ask</span>' + data
+        }
+        },
+        {
+          "data": "unitstotal", render: function (data, type, row) {
+          return '<span class="mobilehead">Units Total </span>' + data
+        }
+        },
+        {
+          "data": "totalcost", render: function (data, type, row) {
+          return '<span class="mobilehead">Total Cost </span>' + data
+        }
+        }
+      ],
+      responsive: true, "bAutoWidth": false,
+      retrieve: true,
+      "language": {
+          "decimal":        "",
+                           "emptyTable":     "No Results Found.",
+                           "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+                           "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                           "infoFiltered":   "(filtered from _MAX_ total entries)",
+                           "infoPostFix":    "",
+                           "thousands":      ",",
+                           "lengthMenu":     "Show _MENU_ Entries",
+                           "loadingRecords": "Loading...",
+                           "processing":     "Processing...",
+                           "search":         "Search:",
+                           "zeroRecords":    "No matching records found",
+                           "paginate": {
+                               "first":      "First",
+                               "last":       "Last",
+                               "next":       "Next",
+                               "previous":   "Previous"
+                           },
+                           "aria": {
+                               "sortAscending":  ": activate to sort column ascending",
+                               "sortDescending": ": activate to sort column descending"
+                           }      },
+      "order": [[0, "desc"]]
+    });
+
+//LOAD MY TRADE HISTORY STARTS
+    var tablemytrades = $('#mytradesdatatable').DataTable({
+      ajax: {
+        url: installpath + 'coins/getMyTradesOfMarket/' + marketidsecret,
+        dataSrc: 'myclosedorder'
+      },
+      columns: [
+        {
+          "data": "closeddate", render: function (data, type, row) {
+          return '<span class="mobilehead">Closed Date</span>' + data
+        }
+        },
+        {
+          "data": "type", render: function (data, type, row) {
+             return (data=="Limit Buy" ||data=="Conditional Buy" ) ?
+                    '<span class="mobilehead">Type</span> <span class="green-color">' + data+'</span>'
+                   :'<span class="mobilehead">Type</span> <span class="red-color">' + data+'</span>'
+        }
+        },
+        {
+          "data": "bidaskamount", render: function (data, type, row) {
+          return '<span class="mobilehead">Bid/Ask (LTC)</span>' + data
+        }
+        },
+        {
+          "data": "unitstotal", render: function (data, type, row) {
+          return '<span class="mobilehead">Units Total (BTC)</span>' + data
+        }
+        },
+        {
+          "data": "unitsfilled", render: function (data, type, row) {
+          return '<span class="mobilehead"> Units Filled (BTC)</span>' + data
+        }
+        },
+        {
+          "data": "actualcost", render: function (data, type, row) {
+          return '<span class="mobilehead"> (LTC)</span>' + data
+        }
+        },
+        {
+          "data": "estimatedtotal", render: function (data, type, row) {
+          return '<span class="mobilehead">Total Cost (LTC)</span>' + data
+        }
+        }
+      ],
+      responsive: true, "bAutoWidth": false,
+      retrieve: true,
+      "language": {
+          "decimal":        "",
+                           "emptyTable":     "No Results Found.",
+                           "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+                           "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                           "infoFiltered":   "(filtered from _MAX_ total entries)",
+                           "infoPostFix":    "",
+                           "thousands":      ",",
+                           "lengthMenu":     "Show _MENU_ Entries",
+                           "loadingRecords": "Loading...",
+                           "processing":     "Processing...",
+                           "search":         "Search:",
+                           "zeroRecords":    "No matching records found",
+                           "paginate": {
+                               "first":      "First",
+                               "last":       "Last",
+                               "next":       "Next",
+                               "previous":   "Previous"
+                           },
+                           "aria": {
+                               "sortAscending":  ": activate to sort column ascending",
+                               "sortDescending": ": activate to sort column descending"
+                           }      },
+      "order": [[0, "desc"]]
+    });
+
+
+    //PERIODICALLY UPDATE ALL DATA
+    setInterval(function () {
+      updateTransactionDetails();
+      tablebids.ajax.reload(null, false); // bids reload
+      tableasks.ajax.reload(null, false); // asks reload
+      tablealltrades.ajax.reload(null, false); // Market trades reload
+      if (loginstatus == 1) {
+        tableopenorder.ajax.reload(null, false); // open order reload
+        tablemytrades.ajax.reload(null, false); // My trades reload
+      }
+    }, 4000);
+
+  });
+
+  function deleteThis(id, permission) {
+    $('#deleteButton').trigger('click');
+    $('#approveBtn').attr('onclick', '');
+    $('#approveBtn').attr('onclick', 'cancelorder(' + id + ')');
+  }
+
+  function cancelorder(orderid) {
+
+    $.ajax({
+      type: "POST", cache: false,
+      url: installpath + 'coins/cancelorder',
+      data: "orderid=" + orderid,
+      success: function (data) {
+        data = data.trim();
+
+        if (data == 2) {
+          $("#errordiv p").html("Sorry,You don't have privilage to cancel this order.");
+          $("#errordiv").addClass("active");
+          setTimeout(function () {
+            $("#errordiv").removeClass("active");
+          }, 2000);
+
+        }
+        if (data == 1) {
+          $('#openorderrow' + orderid).remove();
+          $("#successdiv p").html("Order has been sucessfully cancelled.");
+          $("#successdiv").addClass("active");
+          setTimeout(function () {
+            $("#successdiv").removeClass("active");
+          }, 2000);
+        }
+      }
+    });
+  }
+
+
+  function gotologin() {
+    var redirecturl = '../../account/login/aHR0cDovL2lub3V0LWJsb2NrY2hhaW4tYWx0ZXhjaGFuZ2VyLmRlbW8uaW5vdXRzY3JpcHRzLm5ldC9pbmRleC5waHAvY29pbnMvbWFya2V0ZGV0YWlscy9MVEMtQlRD.html';
+    window.location.href = redirecturl;
+  }
+
+
+function saveorder(ordertype) {
+
+    var confirm_commision = $('#confirm_commisionset').val().trim();
+    confirm_commision = parseFloat(confirm_commision).toFixed(roundfigure);
+
+    if (ordertype == 'buy') {
+      var quantity = $('#quantity_Buy').val().trim();
+      var price = $('#price_Buy').val().trim();
+      var conditionalprice = $('#target_Buy').val().trim();
+      var total = $('#total_Buy').val().trim();
+      var balencebasecoin = $('#balencebasecoinvaluenew').val().trim();
+      var ordercondition = $('#ordercondition').val().trim();
+
+      if ($("#buyconditional").prop('checked') == true) { var type = 2; }
+                                                   else { var type = 1; }
+
+
+      if (quantity == "" || quantity == 0) {
+         $('#quantity_Buy').parent().parent().find(".taberormsg").html("Please enter quantity to buy").show();
+         $('#quantity_Buy').parent().addClass('has-error');
+         return false;
+      }
+      if (price == "" || price == 0) {
+        $('#price').parent().parent().find(".taberormsg").html("Please enter price to buy.").show();
+        $('#price').parent().addClass('has-error');
+        return false;
+      }
+
+      if (type == 2) {
+        if (conditionalprice == "" || conditionalprice == 0) {
+          $('#target_Buy').parent().parent().find(".taberormsg").html("Select a condition and a target greater than .00000001 for conditional orders.").show();
+          $('#target_Buy').parent().addClass('has-error');
+          return false;
+        }
+      }
+
+
+       quantity = parseFloat(quantity);
+       price = parseFloat(price);
+       conditionalprice = parseFloat(conditionalprice);
+       total = parseFloat(total);
+       balencebasecoin = parseFloat(balencebasecoin);
+
+      if (parseFloat(quantity) < parseFloat(min_order_size)) {
+        var strmsg = "The minimum order size is {MINSIZE}.";
+        var strmsgtxt = strmsg.replace("{MINSIZE}", min_order_size);
+        $('#quantity_Buy').parent().parent().find(".taberormsg").html(strmsgtxt).show();
+        $('#quantity_Buy').parent().addClass('has-error');
+        return false;
+      }
+      if (parseFloat(total) > parseFloat(balencebasecoin)) {
+        var strmsg = "You do not have {COINSYMBOL} balance to trade this units of coin.";
+		var strmsgtxt = strmsg.replace("{COINSYMBOL}", BaseCoinSymbol);
+        $('#quantity_Buy').parent().parent().find(".taberormsg").html(strmsgtxt).show();
+        $('#quantity_Buy').parent().addClass('has-error');
+        return false;
+      }
+
+
+      var cointype = 2;
+      $('#confirm_ordertype').val(2);
+      $('#confirm_conditiontype').val(type);
+      $('#confirm_ordercondition').val(ordercondition);
+      if (type == 2) {
+        $('#confirm_type').html("Conditional Buy");
+        $('#confirm_type1').html("Conditional Buy");
+      }
+      else {
+        $('#confirm_type').html("Limit Buy");
+        $('#confirm_type1').html("Limit Buy");
+      }
+
+
+      var result = (quantity * price);
+      var commision = (parseFloat(result) * parseFloat(buy_profit_percentage)) / 100;
+      commision = parseFloat(commision);
+      commision = commision.toFixed(roundfigure);
+      $("#confirm_commision").val(commision);
+
+    }
+    else {
+
+      var quantity = $('#quantity_Sell').val().trim();
+      var price = $('#price_Sell').val().trim();
+      var conditionalprice = $('#target_Sell').val().trim();
+      var total = $('#total_Sell').val().trim();
+      var ordercondition = $('#sell_ordercondition').val().trim();
+      var balencetradecoin = $('#balencetradecoinvaluenew').val().trim();
+
+      if($("#sellconditional").prop('checked') == true) { var type = 2; }
+                                                   else { var type = 1; }
+
+      if (quantity == "" || quantity == 0) {
+        $('#quantity_Sell').parent().parent().find(".taberormsg").html("Please enter quantity to sell.").show();
+        $('#quantity_Sell').parent().addClass('has-error');
+        return false;
+      }
+      if (price == "" || price == 0) {
+        $('#price_Sell').parent().parent().find(".taberormsg").html("Please enter price to sell.").show();
+        $('#price_Sell').parent().addClass('has-error');
+        return false;
+      }
+
+      if (type == 2) {
+        if (conditionalprice == "" || conditionalprice == 0) {
+          $('#target_Sell').parent().parent().find(".taberormsg").html("Select a condition and a target greater than 0.00 for conditional orders").show();
+          $('#target_Sell').parent().addClass('has-error');
+          return false;
+        }
+      }
+
+
+      quantity = parseFloat(quantity);
+      price = parseFloat(price);
+      conditionalprice = parseFloat(conditionalprice);
+      total = parseFloat(total);
+      balencetradecoin = parseFloat(balencetradecoin);
+
+      if (quantity > parseFloat(balencetradecoin)) {
+	var strmsg = "You do not have {COINSYMBOL} balance to trade this units of coin.";
+	var strmsgtxt = strmsg.replace("{COINSYMBOL}", TradeCoinSymbol);
+        $('#quantity_Sell').parent().parent().find(".taberormsg").html(strmsgtxt).show();
+        $('#quantity_Sell').parent().addClass('has-error');
+        return false;
+      }
+      if (quantity < parseFloat(min_order_size)) {
+        var strmsg = "The minimum order size is {MINSIZE}.";
+        var strmsgtxt = strmsg.replace("{MINSIZE}", min_order_size);
+        $('#quantity_Sell').parent().parent().find(".taberormsg").html(strmsgtxt).show();
+        $('#quantity_Sell').parent().addClass('has-error');
+        return false;
+      }
+
+      var cointype = 1;
+      $('#confirm_ordertype').val(1);
+      $('#confirm_conditiontype').val(type);
+      $('#confirm_ordercondition').val(ordercondition);
+      if (type == 2) {
+        $('#confirm_type').html("Conditional Sell");
+        $('#confirm_type1').html("Conditional Sell");
+      }
+      else {
+        $('#confirm_type').html("Limit Sell");
+        $('#confirm_type1').html("Limit Sell");
+      }
+
+      var result = (quantity * price);
+      var commision = (parseFloat(result) * parseFloat(sell_profit_percentage)) / 100;
+
+      commision = parseFloat(commision);
+      commision = commision.toFixed(roundfigure);
+      $("#confirm_commision").val(commision);
+
+    }
+
+
+
+    subtotal = quantity * price;
+    subtotal = parseFloat(subtotal).toFixed(roundfigure);
+
+    price = parseFloat(price);
+
+
+    $('#confirm_marketname').html(marketname);
+    $('#confirm_quantity').val(quantity.toFixed(roundfigure));
+    $('#confirm_price').val(price.toFixed(roundfigure));
+    $('#confirm_subtotal').val(subtotal);
+    $('#confirm_total').val(total.toFixed(roundfigure));
+    $('#confirm_tradecoinsymbol').html(TradeCoinSymbol);
+
+
+    if (type == 2) {
+      $("#conditioanldiv").css("display", "block");
+      $('#confirm_conditionalprice').val(conditionalprice.toFixed(roundfigure));
+    }
+    divs = document.getElementsByClassName('confirm_basecoinsymbol');
+    [].slice.call(divs).forEach(function (div) {
+      div.innerHTML = BaseCoinSymbol;
+    });
+    $('#myModal').modal('show');
+    return false;
+  }
+
+  $(document).ready(function () {
+
+
+    $('#confirm').click(function () {
+
+
+      var quantity = $('#confirm_quantity').val().trim();
+      var price = $('#confirm_price').val().trim();
+      var conditionalprice = $('#confirm_conditionalprice').val().trim();
+      var total = $('#confirm_subtotal').val().trim();
+      var ordertype = $('#confirm_ordertype').val().trim();
+      var ordercondition = $('#confirm_ordercondition').val().trim();
+      var conditiontype = $('#confirm_conditiontype').val().trim();
+      var marketid = $('#confirm_marketid').val().trim();
+      var commission = $('#confirm_commision').val().trim();
+
+
+
+      $.ajax({
+        type: "POST",
+        url: installpath + 'coins/addbidaskprocesssubmit',
+        data: "quantity=" + quantity + "&price=" + price + "&conditionalprice=" + conditionalprice + "&total=" + total + "&marketid=" + marketid + "&conditiontype=" + conditiontype + "&ordercondition=" + ordercondition + "&type=" + ordertype + "&commission=" + commission,
+        success: function (data) {
+          data = data.trim();
+          var details = data.split('??');
+          var detailsnew = data.split('##@@$$');
+          if (detailsnew[0] == 0) {
+            gotologin();
+          }
+          else if (detailsnew[0] == 12) {
+            $('#myModal').modal('toggle');
+            $("#errordiv p").html("Invalid market!");
+            $("#errordiv").addClass("active");
+            setTimeout(function () {
+              $("#errordiv").removeClass("active");
+            }, 2000);
+            return false;
+          }
+          else if (detailsnew[0] == 6) {
+            $('#myModal').modal('toggle');
+            $("#errordiv p").html("Please enter quantity.");
+            $("#errordiv").addClass("active");
+            setTimeout(function () {
+              $("#errordiv").removeClass("active");
+            }, 2000);
+            return false;
+          }
+          else if (detailsnew[0] == 7) {
+            $('#myModal').modal('toggle');
+            var strmsg = "You do not have {COINSYMBOL} balance to trade this units of coin.";
+            var strmsg1 = strmsg.replace("{BALANCE}", detailsnew[1]);
+            var strmsgtxt = strmsg1.replace("{COINSYMBOL}", BaseCoinSymbol);
+            $("#errordiv p").html(strmsgtxt);
+            $("#errordiv").addClass("active");
+            setTimeout(function () {
+              $("#errordiv").removeClass("active");
+            }, 2000);
+            return false;
+
+          }
+          else if (detailsnew[0] == 8) {
+            $('#myModal').modal('toggle');
+            var strmsg = "Units should be less than {BALANCE} {COINSYMBOL}.";
+            var strmsg1 = strmsg.replace("{BALANCE}", detailsnew[1]);
+            var strmsgtxt = strmsg1.replace("{COINSYMBOL}", TradeCoinSymbol);
+            $("#errordiv p").html(strmsgtxt);
+            $("#errordiv").addClass("active");
+            setTimeout(function () {
+              $("#errordiv").removeClass("active");
+            }, 2000);
+            return false;
+
+          }
+          else if (detailsnew[0] == 9) {
+            $('#myModal').modal('toggle');
+            var strmsg = "The minimum order size is {MINSIZE}.";
+            var strmsgtxt = strmsg.replace("{MINSIZE}", min_order_size);
+            $("#errordiv p").html(strmsgtxt);
+            $("#errordiv").addClass("active");
+            setTimeout(function () {
+              $("#errordiv").removeClass("active");
+            }, 2000);
+            return false;
+
+          }
+          else if (detailsnew[0] == 10) {
+            $('#myModal').modal('toggle');
+            $("#errordiv p").html("Please enter price.");
+            $("#errordiv").addClass("active");
+            setTimeout(function () {
+              $("#errordiv").removeClass("active");
+            }, 2000);
+            return false;
+
+          }
+          else if (detailsnew[0] == 11) {
+            $('#myModal').modal('toggle');
+            $("#errordiv p").html("Select a condition and a target greater than 0.00 for conditional orders");
+            $("#errordiv").addClass("active");
+            setTimeout(function () {
+              $("#errordiv").removeClass("active");
+            }, 2000);
+            return false;
+
+          }
+          else if (detailsnew[0] == 1) {
+
+            if (ordertype == 1) {
+              $("#successdiv p").html("Your sell order  placed.");//Your Buy Order Placed
+            }
+            else {
+              $("#successdiv p").html("Your buy order placed.");//Your Sell Order Placed
+            }
+
+
+            $("#successdiv").addClass("active");
+            setTimeout(function () {
+              $("#successdiv").removeClass("active");
+            }, 2000);
+
+            $.ajax({
+              type: "POST",
+              url: installpath + 'coins/addbidaskprocessupdate',
+              data: "quantity=" + quantity + "&price=" + price + "&conditionalprice=" + conditionalprice + "&total=" + total + "&marketid=" + marketid + "&conditiontype=" + conditiontype + "&ordercondition=" + ordercondition + "&type=" + ordertype + "&commission=" + commission + "&insertid=" + detailsnew[1],
+              success: function (data) {
+
+                data = data.trim();
+                var details = data.split('??');
+
+                if (details[0] == 0) {
+                  gotologin();
+                }
+                else if(details[0] == 1) {
+
+                  if (ordertype == 1) {
+                    $("#successdivnew p").html("Your sell order filled.");
+                  }
+                  else {
+                    $("#successdivnew p").html("Your buy order filled.");
+                  }
+                  $("#successdivnew").addClass("active");
+                  setTimeout(function () {
+                    $("#successdivnew").removeClass("active");
+                  }, 2000);
+
+                }
+
+              }
+            });
+
+            $('#quantity_Buy').val('');
+            $('#price_Buy').val('');
+            $('#target_Buy').val('');
+            $('#total_Buy').val('');
+
+            $('#quantity_Sell').val('');
+            $('#price_Sell').val('');
+            $('#target_Sell').val('');
+            $('#total_Sell').val('');
+
+            $('#myModal').modal('toggle');
+            return false;
+          }
+
+
+        }
+      });
+    });
+
+
+  });
+</script>
+<!-- Additional sections Ends Here -->
+<script type="text/javascript">
+          function changeCurrentLanaguage()
+          {
+            var sellang=$("#publiclanguage").val();
+            Set_Cookie('inoutio_language',sellang,0, "../../../index.html") ;
+            window.location.href = window.location.href;          
+          }  
+          function Set_Cookie( name, value, expires, path, domain, secure ) 
+           {	
+             document.cookie = name + "=" +escape( value ) +
+		( ( path ) ? ";path=" + path : "" ) + 
+		( ( domain ) ? ";domain=" + domain : "" ) +
+		( ( secure ) ? ";secure" : "" );
+           }
+	  </script>
+<footer class="commonfooter text-center fullwidth pull-left">
+
+	<div class="main-container">
+	<div class="text-center footersocial">
+		<ul class="footersocial list-unstyled">
+<li class="footersocialLI"><a class="social-a facebooksocial" target="_blank" href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+<li class="footersocialLI"><a class="social-a twitersocial" target="_blank" href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+<li class="footersocialLI"><a class="social-a twitersocial" target="_blank" href="https://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+	<div class="footerlinks">
+		<ul class="footerlinkul list-unstyled">
+<li class="footerlinkli"><a href="../../home/about.html" class="footerlinks-a">About</a></li>
+<li class="footerlinkli"><a href="../../home/terms.html" class="footerlinks-a">Terms and Conditions</a></li>
+<li class="footerlinkli"><a href="../../home/howitworks.html" class="footerlinks-a">How It Works</a></li>
+<li class="footerlinkli"><a href="../../home/fees.html" class="footerlinks-a">Fees</a></li>
+<li class="footerlinkli"><a href="../../home/privacy.html" class="footerlinks-a">Privacy Policy</a></li>
+<li class="footerlinkli"><a href="../../home/contactus.html" class="footerlinks-a">Contact Us</a></li>
+
+<!--Addon compactability -->
+<!--Addon compactability -->
+		</ul>
+	</div>
+
+
+	<div class="clearfix"></div>
+	<p class="cpyryttxt">&copy; 2018 @ Obbip Blockchain </p>
+	</div>
+	
+	
+
+</footer>
+<div class="successmessagepop comnmsgwrpnew" id="successdivnew">
+	<h4>Success</h4>
+	<p> </p>
+</div>
+
+
+<div class="successmessagepop comnmsgwrp" id="successdiv">
+	<h4>Success</h4>
+	<p> </p>
+</div>
+
+<div class="errormessagepop comnmsgwrp" id="errordiv">
+	<h4>Error</h4>
+	<p> </p>
+</div>
+	
+	<!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="../../../js/bootstrap.js"></script>
+	<script src="../../../js/select2.full.min.js"></script>
+	<script src="../../../js/common.js"></script>
+	<script type="text/javascript">
+	  $(function(){
+	  
+	  });
+	  </script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128590405-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-128590405-1');
+</script>
+  </body>
+
+
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <script src="../../../www.google.com/recaptcha/api.js" async defer></script>
+
+    <meta charset="utf-8">
+    <title>Obbip Blockchain</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../admin/css/custom.css">
+    <link rel="stylesheet" type="text/css"
+          href="../../admin/css/bootstrap.min.css">
+    <script type="text/javascript"
+            src="../../admin/js/jquery.min.js"></script>
+    <style>
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            background: #364150;
+            font-family: Arial, Gotham, "Helvetica Neue", Helvetica, sans-serif;
+        }
+        .outer {
+            display: table;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+        .middle {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .loginboxouter {
+            margin: 0px auto;
+            width: 400px;
+        }
+        .loginbox {
+            background-color: #eceef1;
+            border-radius: 2px;
+            overflow: hidden;
+            padding: 10px 30px 30px;
+            position: relative;
+        }
+        .loginboxouter .logo {
+            text-align: center;
+            display: block;
+            margin: 10px 0;
+            color: #FFFFFF;
+            font-size: 24px;
+        }
+        .loginboxouter .logoc {
+            color: #6DBCDB; display: block;
+        }
+        .loginbox .form-title {
+            text-align: center;
+            color: #6DBCDB;
+            font-size: 18px;
+            font-weight: 400 !important;
+            text-align: center;
+        }
+        .loginbox .logininput {
+            background-color: #dde3ec;
+            border: 1px solid #dde3ec;
+            color: #8290a3;
+            height: 43px;
+            outline: none;
+            width: 100%;
+            transition: all .2s ease-in .0s;
+            -webkit-transition: all .2s ease-in .0s;
+            -moz-transition: all .2s ease-in .0s;
+            padding: 0 10px;
+        }
+        .loginbox .logininput:focus {
+            border: 1px solid #c3ccda;
+        }
+        .visible-ies {
+            display: none;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+<div class="outer">
+    <div class="middle">
+        <div class="loginboxouter">
+            <div class="logo">Obbip Blockchain&nbsp;<span
+                        class="logoc">Admin Area</span></div>
+            <div class="loginbox">
+
+                <h3 class="form-title">Sign In</h3>
+                <form class="form-horizontal" enctype="multipart/form-data"
+                      id="siteform">
+                    <div class="form-group">
+                        <label class="control-label visible-ies ">Username</label>
+                        <input class="logininput" type="text" name="username"
+                               id="username" placeholder="Username"
+                           value="admin"                                autocomplete="off">
+                        <div class="parsley-errors-list"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label visible-ies">Password</label>
+                        <input class="logininput" type="password"
+                               name="password" id="password"
+                           value="admin"                                placeholder="Password" autocomplete="off">
+                        <div class="parsley-errors-list"></div>
+                    </div>
+
+                                      <div class="form-group" id="recapcha">
+                        <div class="g-recaptcha"
+                             data-sitekey="6LdvZHcUAAAAAB8abLSd9MYZgLKCPTE-KPDYlL7r"></div>
+                    </div>
+                  
+                    <div class="form-group">
+                        <button class="btn btn-success col-lg-12 col-md-12 col-sm-12 col-xs-12 submitbtn "
+                                data-loading-text="Please Wait"
+                                id="buttonclick">Login
+                        </button>
+                    </div>
+
+
+                    <div class="form-group">
+                        <a class="pull-left"
+                           href="index/forgotpassword.html">Forgot
+                            Your Password?</a>
+                        <a class="pull-right"
+                           href="index/forgotusername.html">Forgot
+                            Your Username?</a>
+                    </div>
+
+                </form>
+
+
+            </div>
+        </div>
+        <div class="parsley-errors-list eoorlogin" id="err"
+             align="center"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    $("form#siteform").submit(function (e) {
+      e.preventDefault();
+
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      if (username == "") {
+        $('#err').html("Username cannot be left blank.");
+        $('#err').addClass('show');
+        setTimeout(function () {
+          $('#err').removeClass('show');
+        }, 1400);
+        grecaptcha.reset();
+        return false;
+      }
+      else if (password == "") {
+        $('#err').html("Password cannot be left blank.");
+        $('#err').addClass('show');
+        setTimeout(function () {
+          $('#err').removeClass('show');
+        }, 1400);
+        grecaptcha.reset();
+        return false;
+      }
+
+      var tourl = "index/loginprocess.html";
+      var formData = new FormData(this);
+
+      $.ajax({
+        type: "POST",
+        url: tourl,
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        beforeSend: function(){
+          $(".submitbtn").button('loading');
+        },
+        success: function (data) {
+          data = data.trim();
+
+          var details = data.split("??");
+          data = details[0];
+          code = details[1];
+
+
+          if (data == "2fa") {
+            window.location = 'http://inout-blockchain-altexchanger.demo.inoutscripts.net/index.php/admin/index/verify2fa/' + code;
+          }
+          else if (data == "invalid") {
+            $('#err').html("Invalid login details.");
+            $('#err').addClass('show');
+            setTimeout(function () {
+              $('#err').removeClass('show');
+            }, 1400);
+            $('#username').val("");
+            $('#password').val("");
+            grecaptcha.reset();
+            return false;
+
+          }
+          else if (data == "fail") {
+            $('#err').html("Captcha verification failed, please try again.");
+            $('#err').addClass('show');
+            setTimeout(function () {
+              $('#err').removeClass('show');
+            }, 1400);
+            grecaptcha.reset();
+
+          }
+
+          else if (data == "10") {
+            window.location.href = "index/ipnotverified.html";
+          }
+          else if (data == "11") {
+            $('#err').html("IP verification email sending failed.");
+            $('#err').addClass('show');
+            setTimeout(function () {
+              $('#err').removeClass('show');
+            }, 1400);
+            grecaptcha.reset();
+          }
+
+          else if (data == "null") {
+
+            $('#err').html("Username or password cannot be left blank");
+            $('#err').addClass('show');
+
+            setTimeout(function () {
+              $('#err').removeClass('show');
+            }, 1400);
+
+            grecaptcha.reset();
+            return false;
+
+          }
+          else if (data == "success") {
+            var urlll = "index.html";
+            window.location.href = urlll;
+          }
+
+        },
+        complete:function() {
+          $(".submitbtn").button('reset');
+        }
+      });
+
+      return false;
+    });
+  });
+</script>
+<script src="../../admin/js/bootstrap.min.js"></script>
+</body>
+
+
+</html>

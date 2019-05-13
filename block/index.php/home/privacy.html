@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+
+<!-- Mirrored from inout-blockchain-altexchanger.demo.inoutscripts.net/index.php/home/privacy by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 22 Dec 2018 02:57:57 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--load meta data and contents-->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+    	<title>Obbip Blockchain - Privacy Policy</title>
+   	 <!-- Bootstrap -->
+	<link href="../../css/bootstrap.css" rel="stylesheet">
+	<link href="../../css/main.css" rel="stylesheet">
+	<link href="../../css/responsive.css" rel="stylesheet">
+	<link href="../../css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../css/select2.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,700" rel="stylesheet">
+
+	<script src="../../js/jquery-1.11.3.min.js"></script>
+		
+		
+  </head>
+
+<body>
+ <header class="commonheader fullwidth">
+ 	<div class="main-container">
+ 	<div class="col-md-4 col-sm-9 col-xs-9">
+ 		<div class="headerlogo">
+ 			<a href="../../index.html"><img src="../../userdata/logo/logo.png" alt="Inout Blockchain AltExchanger" title="Inout Blockchain AltExchanger"></a>
+ 		</div>
+ 		</div>
+ 		<div class="menuright col-md-8 col-sm-3 col-xs-3">
+	        <div class="mobile-menu maingraycolor hidden-md visible-sm visible-xs">
+ 		<i class="fa fa-bars"></i>
+ 		<i class="fa fa-times"></i>
+ 		</div>
+ 			<ul class="menuUl list-unstyled barlowbold" id="menuUl">
+ 	<li class="menu-li"><a href="../../index.html" class="menu-a maingraycolor ">Home </a></li>
+	<li class="menu-li"><a href="../coins/markets.html" class="menu-a maingraycolor marketlink-a">Markets&nbsp; <i class="fa fa-bar-chart"></i>
+
+	</a>
+	
+	</li>
+
+
+<li class="menu-li"><a href="howitworks.html" class="menu-a maingraycolor">How It Works</a></li>
+ <li class="menu-li"><a href="../account/register.html" class="menu-a maingraycolor">Register</a></li> 
+<li class="menu-li"><a href="../account/login.html" class="signinbtn btn-main btn barlowbold">Login</a></li> 
+
+   
+<!--LANGUAGE SECTION-->
+
+<li class="menu-li">
+	<div class="menulangugesl">
+	<span class="menlangicn"><i class="fa fa-globe"></i></span>
+		<select class="langugselct custom-select" style="width: 100%" id="publiclanguage" onchange="changeCurrentLanaguage()">
+<option value="1"  selected="selected"  >
+English</option>
+<option value="2"  >
+Spanish</option>
+<option value="3"  >
+French</option>
+<option value="4"  >
+Japanese</option>
+			
+		</select>
+		</div>
+ </li>   
+  
+<!--LANGUAGE SECTION-->                                                    
+ 				                                   
+ 			</ul>
+ 		</div>
+ 	</div>
+ 	<div class="headeroverlay"></div>
+ </header>
+
+<script type="text/javascript">
+		$(function(){
+    var current = location.pathname;
+    current = current.substring(current.lastIndexOf('../../index.html'));
+    
+
+    $('.menu-li a').each(function(){
+        var $this = $(this);
+        		var currentHref = $this.attr('href');
+		        if (typeof currentHref != "undefined") {
+		currentHref = currentHref.substring(currentHref.lastIndexOf('../../index.html'));
+		$this.removeClass('active');     
+            if(currentHref == current) {
+       $this.addClass('active');
+			}
+			
+
+
+		}
+    });
+});
+	
+function logout()
+{
+	$.ajax({
+	type: "POST",cache: false,
+	url:"http://inout-blockchain-altexchanger.demo.inoutscripts.net/index.php/account/logoutprocess",	
+		success: function(data)
+		{
+data=data.trim();
+
+
+		if(data=="success")
+		{
+		var redirecturl="../account/login.html";
+		window.location.href = redirecturl;
+		}
+		}
+	});
+}
+
+</script>
+<section class="mainareawraper fullwidth pull-left">
+	<div class="comnpgewrper fullwidth pull-left mainBgcolor">
+		<div class="comnpagecontainer">
+			<div class="fullwidth pull-left">
+			<h3 class="mnbnrhd text-white mgnB25 mgnT25">Privacy Policy</h3>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div class="comnpagewrper fullwidth pull-left mgnT25">
+		<div class="comnpagecontainer">
+			<div class="fullwidth pull-left mgnB25">
+			
+			<span style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;">YOUR PRIVACY POLICY CONTENTS HERE</span>	
+			</div>
+		</div>
+	</div>
+	
+</section>
+<script type="text/javascript">
+          function changeCurrentLanaguage()
+          {
+            var sellang=$("#publiclanguage").val();
+            Set_Cookie('inoutio_language',sellang,0, "../../index.html") ;
+            window.location.href = window.location.href;          
+          }  
+          function Set_Cookie( name, value, expires, path, domain, secure ) 
+           {	
+             document.cookie = name + "=" +escape( value ) +
+		( ( path ) ? ";path=" + path : "" ) + 
+		( ( domain ) ? ";domain=" + domain : "" ) +
+		( ( secure ) ? ";secure" : "" );
+           }
+	  </script>
+<footer class="commonfooter text-center fullwidth pull-left">
+
+	<div class="main-container">
+	<div class="text-center footersocial">
+		<ul class="footersocial list-unstyled">
+<li class="footersocialLI"><a class="social-a facebooksocial" target="_blank" href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+<li class="footersocialLI"><a class="social-a twitersocial" target="_blank" href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+<li class="footersocialLI"><a class="social-a twitersocial" target="_blank" href="https://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+	<div class="footerlinks">
+		<ul class="footerlinkul list-unstyled">
+<li class="footerlinkli"><a href="about.html" class="footerlinks-a">About</a></li>
+<li class="footerlinkli"><a href="terms.html" class="footerlinks-a">Terms and Conditions</a></li>
+<li class="footerlinkli"><a href="howitworks.html" class="footerlinks-a">How It Works</a></li>
+<li class="footerlinkli"><a href="fees.html" class="footerlinks-a">Fees</a></li>
+<li class="footerlinkli"><a href="privacy.html" class="footerlinks-a">Privacy Policy</a></li>
+<li class="footerlinkli"><a href="contactus.html" class="footerlinks-a">Contact Us</a></li>
+
+<!--Addon compactability -->
+<!--Addon compactability -->
+		</ul>
+	</div>
+
+
+	<div class="clearfix"></div>
+	<p class="cpyryttxt">&copy; 2018 @ Obbip  Blockchain </p>
+	</div>
+	
+	
+
+</footer>
+<div class="successmessagepop comnmsgwrpnew" id="successdivnew">
+	<h4>Success</h4>
+	<p> </p>
+</div>
+
+
+<div class="successmessagepop comnmsgwrp" id="successdiv">
+	<h4>Success</h4>
+	<p> </p>
+</div>
+
+<div class="errormessagepop comnmsgwrp" id="errordiv">
+	<h4>Error</h4>
+	<p> </p>
+</div>
+	
+	<!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="../../js/bootstrap.js"></script>
+	<script src="../../js/select2.full.min.js"></script>
+	<script src="../../js/common.js"></script>
+	<script type="text/javascript">
+	  $(function(){
+	  
+	  });
+	  </script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128590405-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-128590405-1');
+</script>
+  </body>
+
+
+</html>

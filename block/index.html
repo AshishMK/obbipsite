@@ -1,0 +1,599 @@
+<!doctype html>
+<html>
+
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--load meta data and contents-->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+    	<title>Obbip Blockchain - Home</title>
+   	 <!-- Bootstrap -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<link href="css/responsive.css" rel="stylesheet">
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/select2.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,700" rel="stylesheet">
+
+	<script src="js/jquery-1.11.3.min.js"></script>
+		
+		
+  </head>
+
+<body>
+ <header class="commonheader fullwidth">
+ 	<div class="main-container">
+ 	<div class="col-md-4 col-sm-9 col-xs-9">
+ 		<div class="headerlogo">
+ 			<a href="index.html"><img src="userdata/logo/logo.png" alt="Obbip Blockchain" title="Obbip Blockchain"></a>
+ 		</div>
+ 		</div>
+ 		<div class="menuright col-md-8 col-sm-3 col-xs-3">
+	        <div class="mobile-menu maingraycolor hidden-md visible-sm visible-xs">
+ 		<i class="fa fa-bars"></i>
+ 		<i class="fa fa-times"></i>
+ 		</div>
+ 			<ul class="menuUl list-unstyled barlowbold" id="menuUl">
+ 	<li class="menu-li"><a href="index.html" class="menu-a maingraycolor ">Home </a></li>
+	<li class="menu-li"><a href="index.php/coins/markets.html" class="menu-a maingraycolor marketlink-a">Markets&nbsp; <i class="fa fa-bar-chart"></i>
+
+	</a>
+	
+	</li>
+
+
+<li class="menu-li"><a href="index.php/home/howitworks.html" class="menu-a maingraycolor">How It Works</a></li>
+ <li class="menu-li"><a href="index.php/account/register.html" class="menu-a maingraycolor">Register</a></li> 
+<li class="menu-li"><a href="index.php/account/login.html" class="signinbtn btn-main btn barlowbold">Login</a></li> 
+
+   
+<!--LANGUAGE SECTION-->
+
+<li class="menu-li">
+	<div class="menulangugesl">
+	<span class="menlangicn"><i class="fa fa-globe"></i></span>
+		<select class="langugselct custom-select" style="width: 100%" id="publiclanguage" onchange="changeCurrentLanaguage()">
+<option value="1"  selected="selected"  >
+English</option>
+<option value="2"  >
+Spanish</option>
+<option value="3"  >
+French</option>
+<option value="4"  >
+Japanese</option>
+			
+		</select>
+		</div>
+ </li>   
+  
+<!--LANGUAGE SECTION-->                                                    
+ 				                                   
+ 			</ul>
+ 		</div>
+ 	</div>
+ 	<div class="headeroverlay"></div>
+ </header>
+
+<script type="text/javascript">
+		$(function(){
+    var current = location.pathname;
+    current = current.substring(current.lastIndexOf('index.html'));
+    
+
+    $('.menu-li a').each(function(){
+        var $this = $(this);
+        		var currentHref = $this.attr('href');
+		        if (typeof currentHref != "undefined") {
+		currentHref = currentHref.substring(currentHref.lastIndexOf('index.html'));
+		$this.removeClass('active');     
+            if(currentHref == current) {
+       $this.addClass('active');
+			}
+			
+
+
+		}
+    });
+});
+	
+function logout()
+{
+	$.ajax({
+	type: "POST",cache: false,
+	url:"http://inout-blockchain-altexchanger.demo.inoutscripts.net/index.php/account/logoutprocess",	
+		success: function(data)
+		{
+data=data.trim();
+
+
+		if(data=="success")
+		{
+		var redirecturl="index.php/account/login.html";
+		window.location.href = redirecturl;
+		}
+		}
+	});
+}
+
+</script>
+ <section class="mainareawraper fullwidth pull-left">
+	<div class="mainsliderwrpaer fullwidth pull-left mainBgcolor" >
+	<div class="mainsliderwrpaerIn fullwidth pull-left p-relative">
+		<div class="main-container">
+				<div class="swiper-container indexslider">
+				<div class="slideritem fullwidth pull-left">
+			<div class="col-md-6 col-sm-6 col-xs-12 sliderRight">
+			<div class="sliderimg"> 
+				<img src="images/slider1.png" alt="">
+			</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12 sliderleft text-white">
+				<h3 class="sliderh3 barlowbold">Premium Cryptocurrency Trading Platform and Online Exchange</h3>
+				<p class="sliderp">Obbip Blockchain is one of the fastest, secure online cryptocurrency exchange where you can buy/sell/exchange top cryptocurrencies with your cryptocurrencies.</p>
+				<div class="clearfix"></div>
+<a href="index.php/account/login.html" class="btn sliderbtn">Login</a>
+<a href="index.php/account/register.html" class="btn  sliderbtnfill">Register Now </a>
+				</div>
+				</div>
+				<div class="slideritem fullwidth pull-left">
+			<div class="col-md-6 col-sm-6 col-xs-12 sliderRight">
+			<div class="sliderimg">
+				<img src="images/slider2n.png" alt="">
+			</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12 sliderleft text-white">
+				<h3 class="sliderh3 barlowbold">Fast and Secure Cryptocurrency Exchange Platform </h3>
+				<p class="sliderp">Now deposit your cryptocurrencies and exchange it for other cryptocurrencies faster and easier than ever. </p>
+				<div class="clearfix"></div>
+<a href="index.php/account/login.html" class="btn sliderbtn">Login</a>
+<a href="index.php/account/register.html" class="btn  sliderbtnfill">Register Now </a>
+				</div>
+				</div>
+				<div class="slideritem fullwidth pull-left">
+			<div class="col-md-6 col-sm-6 col-xs-12 sliderRight">
+			<div class="sliderimg">
+				<img src="images/slider3.png" alt="">
+			</div>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12 sliderleft text-white">
+				<h3 class="sliderh3 barlowbold">Easy and Secure Deposits and Withdrawals </h3>
+				<p class="sliderp">Be it your cryptocurrency, Obbip Blockchain allows you to easily deposit and withdraw your financial assets to and from the exchange.</p>
+				<div class="clearfix"></div>
+<a href="index.php/account/login.html" class="btn sliderbtn">Login</a>
+<a href="index.php/account/register.html" class="btn  sliderbtnfill">Register Now </a>
+				</div>
+				</div>
+			</div>
+			
+			
+		</div>
+		<div class="vistlnkslr">				 
+				<a href="index.php/coins/markets.html" class="vistlnkslr-a">
+				<div class="waveround">
+				    <div class="circle delay1"></div>
+				    <div class="circle delay2"></div>
+				    <div class="circle delay3"></div>
+				    <div class="circle delay3"></div>
+	                	</div>
+			        Visit Markets</a>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div class="statsliderwrper fullwidth pull-left">
+		<div class="main-container">
+		
+			<div  class=" col-xs-12 ">
+			 
+				<ul class="str3-2 str_wrap">
+
+                 <li class="statitem ">
+			<a class="homeslider-atag" href="index.php/coins/marketdetails/BTC-BCH.html">
+			<h5 class="statitemh5 barlowbold">BTC/BCH -
+                                                   <span class="statprsctn statup barlowregular">12.66%</span> 
+                                                </h5>
+			<h4 class="stath4">0.04956500</h4>
+			<p class="statcmnp">Volume: 2735.104 BTC</p>
+			</a>		
+		</li>
+                 <li class="statitem ">
+			<a class="homeslider-atag" href="index.php/coins/marketdetails/ETH-BCH.html">
+			<h5 class="statitemh5 barlowbold">ETH/BCH -
+                                                   <span class="statprsctn statup barlowregular">9.75%</span> 
+                                                </h5>
+			<h4 class="stath4">1.77360648</h4>
+			<p class="statcmnp">Volume: 2671.655 ETH</p>
+			</a>		
+		</li>
+                 <li class="statitem ">
+			<a class="homeslider-atag" href="index.php/coins/marketdetails/BTC-ETH.html">
+			<h5 class="statitemh5 barlowbold">BTC/ETH -
+                                                   <span class="statprsctn statup barlowregular">1.18%</span> 
+                                                </h5>
+			<h4 class="stath4">0.02719930</h4>
+			<p class="statcmnp">Volume: 3232.537 BTC</p>
+			</a>		
+		</li>
+                 <li class="statitem ">
+			<a class="homeslider-atag" href="index.php/coins/marketdetails/ETH-BTC.html">
+			<h5 class="statitemh5 barlowbold">ETH/BTC -
+                                                  <span class="statprsctn statdown barlowregular"> -1.08%</span> 
+                                                </h5>
+			<h4 class="stath4">36.80981595</h4>
+			<p class="statcmnp">Volume: 3143.633 ETH</p>
+			</a>		
+		</li>
+                 <li class="statitem ">
+			<a class="homeslider-atag" href="index.php/coins/marketdetails/ETC-BCH.html">
+			<h5 class="statitemh5 barlowbold">ETC/BCH -
+                                                   <span class="statprsctn statup barlowregular">14.27%</span> 
+                                                </h5>
+			<h4 class="stath4">42.42028986</h4>
+			<p class="statcmnp">Volume: 2702.953 ETC</p>
+			</a>		
+		</li>
+                 <li class="statitem ">
+			<a class="homeslider-atag" href="index.php/coins/marketdetails/LTC-BTC.html">
+			<h5 class="statitemh5 barlowbold">LTC/BTC -
+                                                   <span class="statprsctn statup barlowregular">0.25%</span> 
+                                                </h5>
+			<h4 class="stath4">126.98412698</h4>
+			<p class="statcmnp">Volume: 1661.508 LTC</p>
+			</a>		
+		</li>
+                 <li class="statitem ">
+			<a class="homeslider-atag" href="index.php/coins/marketdetails/LTC-BCH.html">
+			<h5 class="statitemh5 barlowbold">LTC/BCH -
+                                                   <span class="statprsctn statup barlowregular">30.96%</span> 
+                                                </h5>
+			<h4 class="stath4">6.15138451</h4>
+			<p class="statcmnp">Volume: 3036.423 LTC</p>
+			</a>		
+		</li>
+                 <li class="statitem ">
+			<a class="homeslider-atag" href="index.php/coins/marketdetails/ETC-BTC.html">
+			<h5 class="statitemh5 barlowbold">ETC/BTC -
+                                                  <span class="statprsctn statdown barlowregular"> -0.74%</span> 
+                                                </h5>
+			<h4 class="stath4">865.80086580</h4>
+			<p class="statcmnp">Volume: 2353.580 ETC</p>
+			</a>		
+		</li>
+					
+				</ul>
+			 </div>
+		</div>
+	</div>
+	<!-- statsliderwrper ends -->
+	<div class="clearfix"></div>
+	<div class="fullwidth pull-left">
+	<div class="infoindexwrp">
+		
+			<p>	<p>	
+		</div>	
+		</div>
+		<p>	<p>	
+			
+		</div>	
+		</div>
+	
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div class="fullwidth pull-left fetrboxwrp">
+		<div class="main-container">
+			<div class="fullwidth pull-left">
+				<div class="feturebox col-sm-4 col-xs-12 text-center">
+				<div class="fetboxicon sprite fetb1"></div>
+					<h4 class="fetbxh3 barlowbold">Buy or Sell Cryptocurrencies</h4>
+					<p class="fetbx-p">Obbip Blockchain allows you to easily deposit your cryptocurrencies and buy/sell your preferred cryptocurrency easily.</p>
+				</div>
+				<div class="feturebox col-sm-4 col-xs-12 text-center">
+				<div class="fetboxicon sprite fetb2"></div>
+					<h4 class="fetbxh3 barlowbold"> Trade & Exchange Cryptocurrencies</h4>
+					<p class="fetbx-p">Now you may easily trade your digital currencies, exchange it with your other preferred crypto assets. </p>
+				</div>
+				<div class="feturebox col-sm-4 col-xs-12 text-center">
+				<div class="fetboxicon sprite fetb3"></div>
+					<h4 class="fetbxh3 barlowbold">Trusted & Secure Platform</h4>
+					<p class="fetbx-p">Obbip Blockchain is a highly secure and trusted platform with various security enforcement mechanism employed to keep your financial assets safe and secure.  </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div class="fullwidth pull-left traperdywrper" style="background-image: url(images/counter-bg.png)">
+		<div class="main-container">
+			<div class="fullwidth pull-left">
+			<div class="col-md-5 col-sm-12 col-xs-12 col-sm-textcenter">
+<h2 class="trnshdr maintextcolor barlowbold"><span class="barlowregular">Transactions</span> Per Day</h2>
+				<p class="fetbx-p">Here we provide you approximate number of transactions of last day.</p>
+				</div>
+				<div class="col-md-7 col-sm-12 col-xs-12 text-center">
+				<p class="barlowbold cntrtp">The number of transactions in the last 24 hours</p>
+				<div class="jcpo-counter counter-demo">
+  <p></p>
+</div> 
+					<p class=" cntrtp">Transactions since    12/21/2018  08:22:39.</p>
+<input type="hidden" name="counterval" id="counterval" value="40806"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div class="fullwidth pull-left">
+		<div class="main-container">
+			<div class="fullwidth  charinfowrp cstmflex">
+			<div class="chartinfright">
+				<div class="img-div fullwidth text-center">
+					<img class="" src="images/chartimage.jpg">
+				</div>
+				</div>
+			<div class="chartinfleft">
+	<h2 class="trnshdr maintextcolor barlowbold mgnT0"><span class="barlowregular">Advanced</span> Charting Tools  </h2>
+
+				<p class="barlowregular lnehgt30">Interested in technical analysis of the market? Now you may perform your technical analysis of the market directly in the platform using industry leading tradingview.com and amchart market graphs. Enable your favourite technical indicators and easily make your trading decisions.</p>
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+	<div class="clearfix"></div>
+	<div class="fullwidth pull-left getsrtedwrper">
+		<div class="main-container">
+		 
+			<div class="getsrtedwrperIn fullwidth pull-left cstmflex">
+				<div class="gtsrtleft">
+					<h2 class="gtssrttle barlowregular maintextcolor mgnT0">Open an Account for Free and Start Trading  Now!</h2>
+					<p class="barlowregular"> We offer best exchange rates, trust & security for your crypto assets. </p>
+					<div class="clearfix"></div>
+					<div class="opnactnbtns mgnT10 fullwidth">
+					
+		<a href="index.php/account/login.html" class="btn btn-main barlowbold">Login </a>
+		<a href="index.php/account/register.html" class="btn btn-gray barlowbold">Register Now </a>
+	
+  <a href="index.php/home/howitworks.html" class="btn btn-default barlowbold">How It Works </a>
+		</div> 
+				</div>
+				<div class="gtsrtright">
+				 <h2 class="barlowbold">Getting Started</h2>
+					<div class="clearfix"></div>
+					<ul class="list-unstyled getstrdUl mgnT25">
+						<li class="getsrtdLi">
+							<div class="media">
+  <div class="media-left media-middle">
+   <div class="sprite gtstricon gtsrt1"></div>
+  </div>
+  <div class="media-body media-middle">
+    <h4 class="media-heading barlowbold">Login/Register</h4>
+    <p class="barlowregular mgnB0">Create an account with us and login to your account.</p>
+  </div>
+</div>
+						</li>
+						<li class="getsrtdLi">
+							<div class="media">
+  <div class="media-left media-middle">
+   <div class="sprite gtstricon gtsrt2"></div>
+  </div>
+  <div class="media-body media-middle">
+    <h4 class="media-heading barlowbold"> Deposit Your Cryptocurrencies</h4>
+    <p class="barlowregular mgnB0">Easily and securely deposit your cryptocurrencies to your account.</p>
+  </div>
+</div>
+						</li>
+						<li class="getsrtdLi">
+							<div class="media ">
+  <div class="media-left media-middle">
+   <div class="sprite gtstricon gtsrt3"></div>
+  </div>
+  <div class="media-body media-middle">
+    <h4 class="media-heading barlowbold">Buy/Sell/Trade Cryptocurrencies</h4>
+    <p class="barlowregular mgnB0">Start buying/selling/trading cryptocurrencies using the online exchange platform.</p>
+  </div>
+</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</section>
+
+
+
+
+<script type="text/javascript" src="js/jquery.liMarquee.js"></script>
+<script type="text/javascript" src="js/jquery.counter.js"></script>
+
+<!-- Slick slider -->
+
+<link rel="stylesheet" type="text/css" href="css/slick.css">
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+<script type="text/javascript" src="js/slick.min.js"></script>
+<!-- Slick slider  -->
+ <script>
+$(window).load(function(){
+	$('.str3-2').liMarquee();
+});
+	
+
+
+
+$(function(){
+	 var currenttransaction='0040806';
+			 
+			          	         setInterval(function() {
+         	         
+			 	$.ajax({
+				type: "POST",cache: false,
+				url: 'http://inout-blockchain-altexchanger.demo.inoutscripts.net/index.php/index/gettransactiondata',
+				data: "currenttransaction="+currenttransaction,
+				success: function(data)
+				{ 
+				
+				var details=data.split("??");  
+				data1=details[0];
+				transactions=details[1];
+					if(data1>0)
+					{
+						
+						var range=data1;
+						element = '<p>';
+						for (var i = 0; i < range.length; i++) {
+						var n = range[i];   
+			element += '<span class="cntotr barlowbold"><span class="cntrtxt contador-dig-' + i + '">' +n+ '</span></span>';
+						}
+						$('.counter-demo').html(element + '</p>');
+						
+
+					}
+					else
+					{
+
+						var range='0040806';
+						element = '<p>';
+						for (var i = 0; i < range.length; i++) {
+						var n = range[i];   
+			element += '<span class="cntotr barlowbold"><span class="cntrtxt contador-dig-' + i + '">' +n+ '</span></span>';
+						}
+						$('.counter-demo').html(element + '</p>');
+			
+					}
+				}
+				});
+			 
+      	                       	                     	        
+         	          }, 1000);
+			 
+			 
+			 
+			 
+			 
+			 
+
+			
+
+
+
+		 
+		 $('.indexslider').slick({
+	 
+	    fade: true,
+	    cssEase: 'linear',
+	 // infinite: false,
+	  autoplay: true,
+  autoplaySpeed: 3000,
+	  pauseOnHover:false,
+	  arrows:false,
+    dots: true,
+	  
+  });
+	
+		 $(".indexslider").on("beforeChange", function(event, slick, currentSlide, nextSlide){
+$(".indexslider .slick-dots li").removeClass("slick-active");
+$(".indexslider .slick-dots li button").attr("aria-pressed","false").focus(function() {
+        this.blur();
+    });
+	});	 
+		 
+	
+		 
+	 })
+</script> 
+<script type="text/javascript">
+          function changeCurrentLanaguage()
+          {
+            var sellang=$("#publiclanguage").val();
+            Set_Cookie('inoutio_language',sellang,0, "index.html") ;
+            window.location.href = window.location.href;          
+          }  
+          function Set_Cookie( name, value, expires, path, domain, secure ) 
+           {	
+             document.cookie = name + "=" +escape( value ) +
+		( ( path ) ? ";path=" + path : "" ) + 
+		( ( domain ) ? ";domain=" + domain : "" ) +
+		( ( secure ) ? ";secure" : "" );
+           }
+	  </script>
+<footer class="commonfooter text-center fullwidth pull-left">
+
+	<div class="main-container">
+	<div class="text-center footersocial">
+		<ul class="footersocial list-unstyled">
+<li class="footersocialLI"><a class="social-a facebooksocial" target="_blank" href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+<li class="footersocialLI"><a class="social-a twitersocial" target="_blank" href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+<li class="footersocialLI"><a class="social-a twitersocial" target="_blank" href="https://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+	<div class="footerlinks">
+		<ul class="footerlinkul list-unstyled">
+<li class="footerlinkli"><a href="index.php/home/about.html" class="footerlinks-a">About</a></li>
+<li class="footerlinkli"><a href="index.php/home/terms.html" class="footerlinks-a">Terms and Conditions</a></li>
+<li class="footerlinkli"><a href="index.php/home/howitworks.html" class="footerlinks-a">How It Works</a></li>
+<li class="footerlinkli"><a href="index.php/home/fees.html" class="footerlinks-a">Fees</a></li>
+<li class="footerlinkli"><a href="index.php/home/privacy.html" class="footerlinks-a">Privacy Policy</a></li>
+<li class="footerlinkli"><a href="index.php/home/contactus.html" class="footerlinks-a">Contact Us</a></li>
+
+<!--Addon compactability -->
+<!--Addon compactability -->
+		</ul>
+	</div>
+
+
+	<div class="clearfix"></div>
+	<p class="cpyryttxt">&copy; 2018 @ Obbip Blockchain </p>
+	</div>
+	
+	
+
+</footer>
+<div class="successmessagepop comnmsgwrpnew" id="successdivnew">
+	<h4>Success</h4>
+	<p> </p>
+</div>
+
+
+<div class="successmessagepop comnmsgwrp" id="successdiv">
+	<h4>Success</h4>
+	<p> </p>
+</div>
+
+<div class="errormessagepop comnmsgwrp" id="errordiv">
+	<h4>Error</h4>
+	<p> </p>
+</div>
+	
+	<!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="js/bootstrap.js"></script>
+	<script src="js/select2.full.min.js"></script>
+	<script src="js/common.js"></script>
+	<script type="text/javascript">
+	  $(function(){
+	  
+	  });
+	  </script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128590405-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-128590405-1');
+</script>
+  </body>
+
+
+</html>

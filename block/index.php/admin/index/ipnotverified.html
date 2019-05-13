@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+    <title>Obbip Blockchain - Verify IP</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../../admin/css/custom.css">
+    <link rel="stylesheet" type="text/css"
+          href="../../../admin/css/bootstrap.min.css">
+    <script type="text/javascript"
+            src="../../../admin/js/jquery.min.js"></script>
+    <style>
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            background: #364150;
+            font-family: Arial, Gotham, "Helvetica Neue", Helvetica, sans-serif;
+        }
+        .outer {
+            display: table;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+        .middle {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .loginboxouter {
+            margin: 0px auto;
+            width: 400px;
+        }
+        .loginbox {
+            background-color: #eceef1;
+            border-radius: 2px;
+            overflow: hidden;
+            padding: 10px 30px 30px;
+            position: relative;
+        }
+        .loginboxouter .logo {
+            text-align: center;
+            display: block;
+            margin: 10px 0;
+            color: #FFFFFF;
+            font-size: 24px;
+        }
+        .loginboxouter .logoc {
+            color: #6DBCDB;
+        }
+        .loginbox .form-title {
+            text-align: center;
+            color: #6DBCDB;
+            font-size: 18px;
+            font-weight: 400 !important;
+            text-align: center;
+        }
+        .loginbox .logininput {
+            background-color: #dde3ec;
+            border: 1px solid #dde3ec;
+            color: #8290a3;
+            height: 43px;
+            outline: none;
+            width: 100%;
+            transition: all .2s ease-in .0s;
+            -webkit-transition: all .2s ease-in .0s;
+            -moz-transition: all .2s ease-in .0s;
+            padding: 0 10px;
+        }
+        .loginbox .logininput:focus {
+            border: 1px solid #c3ccda;
+        }
+        .visible-ies {
+            display: none;
+        }
+        img.imgpop {
+            z-index: 200;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+        .popupcropoverlay, .loginwrperoverlay, .overlayb, .overlayContact, .reportoverlay, .overlayrqstinfo, .overlaySupport, .leadsoverlay, .policyoverlay {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            z-index: 102;
+            background: rgba(0, 0, 0, 0.44);
+
+    </style>
+
+</head>
+
+<body>
+<div class="outer">
+    <div class="middle">
+        <div class="loginboxouter">
+            <div class="logo">Obbip Blockchain</div>
+            <div class="loginbox">
+
+
+                <div class="form-group" id="recapcha">
+                    <h3 class="form-title">NEW IP ADDRESS DETECTED</h3>
+                    We have detected you are attempting to access your account
+                    from the following IP Address:190.198.93.33
+                    Please check your email for instructions on allowing this IP
+                    address to access your account.
+                </div>
+                <div class="form-group">
+                    <a href="../index.html">Back to Login !</a>
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function (e) {
+    $('#send').click(function (evt) {
+      evt.preventDefault();
+
+
+      url = document.location.href;
+
+      var array = url.split('../../../index.html');
+      var code = array[array.length - 1];
+      var username = document.getElementById('username').value;
+      if (username.trim() == "") {
+        $('#err1').html("Please enter your new username.");
+        $('#err1').addClass('show');
+        setTimeout(function () {
+          $('#err1').removeClass('show');
+          $('#err1').html("");
+
+        }, 1400);
+        return false;
+      }
+      else {
+        $("#loaddiv").css("display", "block");
+
+        $.ajax({
+
+          type: "POST", cache: false,
+
+          url: "http://inout-blockchain-altexchanger.demo.inoutscripts.net/index.php/admin/index/forgotusernameconfirmprocess",
+
+          data: "username=" + username + "&code=" + code,
+
+          success: function (data) {
+
+            $("#loaddiv").css("display", "none");
+            data = data.trim();
+
+            if (data == 'error1') {
+              $('#err1').html("Your verification code is expired.");
+              $('#err1').addClass('show');
+              setTimeout(function () {
+                $('#err1').removeClass('show');
+                $('#err1').html("");
+
+              }, 1400);
+              return false;
+
+            }
+            if (data == 0) {
+              window.location.href = "../index.html";
+            }
+            if (data == "demo") {
+              $('#err1').html("This Operation is not allowed in Demo.");
+              $('#err1').addClass('show');
+              setTimeout(function () {
+                $('#err1').removeClass('show');
+                $('#err1').html("");
+
+              }, 1400);
+              return false;
+            }
+            if (data == "exists") {
+              $('#err1').html("This username not available.");
+              $('#err1').addClass('show');
+              setTimeout(function () {
+                $('#err1').removeClass('show');
+                $('#err1').html("");
+
+              }, 1400);
+              return false;
+            }
+
+            if (data == 'success') {
+
+              $("#err").css("display", "none");
+              $('#scc1').html("Successfully updated your password.");
+              $('#scc1').addClass('show');
+              setTimeout(function () {
+                $('#scc1').removeClass('show');
+                $('#scc1').html("");
+
+              }, 1400);
+              window.location.href = "../index.html";
+              return false;
+            }
+
+            if (data == 1) {
+
+              $("#err").css("display", "none");
+              $('#scc1').html("Successfully send your forgot password code.");
+              $('#scc1').addClass('show');
+              setTimeout(function () {
+                $('#scc1').removeClass('show');
+                $('#scc1').html("");
+
+              }, 1400);
+              return false;
+            }
+            if (data == 2) {
+              $('#err1').html("Forgot Password mail sending failed.");
+              $('#err1').addClass('show');
+              setTimeout(function () {
+                $('#err1').removeClass('show');
+                $('#err1').html("");
+
+              }, 1400);
+              return false;
+            }
+            if (data == 3) {
+
+              $('#err1').html("Enter Correct Email.");
+              $('#err1').addClass('show');
+              setTimeout(function () {
+                $('#err1').removeClass('show
+                $('#err1').html("");
+
+              }, 1400);
+              return false;
+
+
+            }
+
+            if (data == 4) {
+              $('#err1').html("Invalid Email.");
+              $('#err1').addClass('show');
+              setTimeout(function () {
+                $('#err1').removeClass('show');
+                $('#err1').html("");
+              }, 1400);
+              return false;
+
+            }
+
+
+          }
+
+
+        });
+      }
+
+    });
+  });
+
+
+</script>
+</body>
+
+
+</html>

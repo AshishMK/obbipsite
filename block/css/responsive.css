@@ -1,0 +1,393 @@
+@charset "utf-8";
+/* CSS Document */
+/**
+Copyright © 2018, Nesote Technologies Private Limited (www.nesote.com).
+
+This particular file  'responsive.css' and the software/application 'Inout Blockchain AltExchanger' are licensed strictly under the licensing terms and conditions of  the website  http://www.inoutscripts.com/, which can be found in the URL http://www.inoutscripts.com/terms.php
+
+You are licensed to use this file and the software/application 'Inout Blockchain AltExchanger’ only if you have already obtained a valid license directly from Nesote Technologies Private Limited through the website Inout Scripts (http://www.inoutscripts.com/) to use the software/application 'Inout Blockchain AltExchanger’ in your website. Any such use shall be restricted only for the allowed use and in (and for) the allowed website (allowed by Nesote Technologies Private Limited), according to the terms and conditions of the license agreement (which can be found in  http://www.inoutscripts.com/terms.php ).
+
+You shall not distribute this file and/or the software/application fully or partly to anyone.
+*/
+
+@media only screen and (min-width:1400px){
+.accountwrapper.fullwidth.pull-left {
+    float: none !important;
+    margin: 0 auto;
+    max-width: 1350px;
+}
+}
+
+@media only screen and (max-width:1200px){
+	 
+	.cntotr{
+		min-width: 55px;
+		height: 55px;
+		line-height: 55px;
+		font-size: 24px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+		border-radius: 10px;
+		
+}
+.marketDright {
+    width: 100%;
+    float: left;
+    margin: 0;
+}	
+.marketDleft {
+    width: 100%;
+	float: left;
+	position: relative;
+	top: 0;
+}	
+	}
+@media only screen and (max-width:991px){
+	.dashinfoboxwrpernw .dashinfoBox {
+    display: block;
+    max-width: 50%;
+		width: 50%;
+    float: left;
+    margin: 0;
+}
+	
+	.mainsliderwrpaerIn {
+    padding: 40px 0 70px;
+}
+	
+	.gtstricon{
+		margin-right: 0;
+	}
+	.gtsrtright{
+		width: 50%;
+	}	
+.trnshdr {
+font-size: 24px;
+    margin-top: 0;
+
+}	
+	.col-sm-textcenter{
+		text-align: center;
+	}	
+	
+.menuUl.list-unstyled  {
+    position: fixed;
+    height: 100%;
+    background: #fff;
+    top: 0;
+    margin: 0;
+	left: -280px;
+	width: 250px;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+-webkit-overflow-scrolling: auto;
+	-moz-box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.2);	
+	box-shadow: 0px 0px 25px 5px rgba(0,0,0,0.2);
+	-moz-transition: all .3s ease .0s;
+	-webkit-transition: all .3s ease .0s;
+	transition: all .3s ease .0s;
+}
+	.menuUl.list-unstyled.active{
+		left: 0;
+	} 
+.mobile-menu {
+   background: #eee;
+padding: 5px 12px;
+float: right;
+border-radius: 5px;
+margin-top: 17px;
+height: 35px;
+line-height: 25px;
+font-size: 16px;
+}
+ 
+	
+.mobile-menu .fa-times{
+	display: none;
+}	
+.mobile-menu.active	 .fa-times{
+	display: inline-block;
+	}
+	.mobile-menu.active .fa-bars{
+		display: none;
+	}	
+.menu-li {
+    display: block;
+    padding:0px;
+    border-bottom: 1px solid #eee;
+	float: left;
+	width: 100%;
+}
+.menulangugesl {
+    width: 100%;
+    padding: 10px 10px 10px 20px;
+}
+	.menlangicn {
+    left: 8px;
+    top: 15px;
+}
+	.menu-a {
+		padding: 15px;
+		display: block;
+		height: auto;
+		line-height: normal;
+	}
+.myaccountdrop-a{
+		padding: 15px;
+		height: auto;
+		line-height: normal;
+		display: none;
+	}	
+	.waveround {
+    right: 35px;
+    top: 12px;
+}
+.signinbtn.btn {
+    display: block;
+    border-radius: 0;
+    text-align: left;
+	padding: 15px;
+}
+	.myacountdropUl.dropdown-menu{
+		position: relative;
+		top: inherit;
+		left: inherit;
+		right: inherit;
+		width: 100%;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+		-moz-border-radius: 0;
+		-webkit-border-radius: 0;
+		border-radius: 0;
+		border: none;
+		display: block !important;
+		margin: 0;
+		padding: 0;
+	}	
+.myacountdropUl.dropdown-menu a {
+    padding: 15px;
+    display: block;
+    border-bottom: 1px solid #eee;
+    font-weight: 700;
+    color: #707070;
+}
+	.myacountdropUl.dropdown-menu li:last-child a{
+		border-bottom: none;
+	}	
+	.acnttypewrp.text-center {
+		text-align: left;
+	}
+		.dashrightwraper.col-sm-12 {
+   
+    margin-top: 5px;
+		
+}
+.dashleftwrapper  {
+		position: relative;
+		top: 0;
+	}	
+	.myacountmobmenu {
+		color: #fff;
+padding: 15px 25px 15px 15px;
+position: relative;
+background: #222;
+-moz-border-radius: 5px 5px 5px 5px;
+-webkit-border-radius: 5px 5px 5px 5px;
+border-radius: 5px 5px 5px 5px;
+	}
+.myacountmobmenu.active {
+-moz-border-radius: 5px 5px 0px 0px;
+-webkit-border-radius: 5px 5px 0px 0px;
+border-radius: 5px 5px 0px 0px;	
+	}
+	.myacountmobmenu .fa{
+		position: absolute;
+		right: 10px;
+		top: 16px;
+	}
+	.leftmenu-ul{
+		display: none;
+	}	
+	.dytable thead{
+		display: none;
+	}	
+.mobilehead {
+    font-weight: 700;
+    display: block;
+}
+	.dytable td{
+		display: block;
+
+	}	
+	.dashleftwrapper  {
+		margin-bottom: 10px;
+	}	
+	.howitboximage{
+		width: 40%;
+	}
+	.howitboxcontent{
+		width: 60%;
+	}
+}
+@media only screen and (max-width:768px){
+	.curncy-label-outer{
+		padding-left: 0
+	}
+	.curncy-label-outer .col-sm-12{
+		padding-left: 0;
+	}
+	.dashinfoboxwrpernw .dashinfoBox {
+	width: 100%;
+		max-width: 100%;
+	}
+ html, body{
+		 min-height: 100%;
+		height: auto !important;
+	  }	
+	
+	
+	.mtlte {
+    margin-top: 0;
+		font-size: 24px;
+}
+	.login-logo {
+    position: relative;
+    left: 0;
+    top: inherit;
+    max-width: 300px;
+    height: auto;
+    margin: 0px auto 10px;
+}
+	.dontacntmdle{
+		margin: 0 0 10px;
+	}
+	.mpargrp {
+    font-size: 14px;
+}
+	.bktohmbtn {
+		display: none;
+	}
+	.col-xs-12.registercol{
+		padding: 0;
+	}
+
+.curncy-label {
+    text-align: center;
+    padding-bottom: 10px;
+}
+}
+@media only screen and (max-width:767px){
+	.sliderRight, .sliderleft {
+		text-align: center;
+	}	
+	.sliderp {
+    max-width: 700px;
+    margin: 0 auto;
+}
+.slick-slide img {
+    margin: 0 auto;
+}	
+	.chartinfleft, .chartinfright, .gtsrtright, .gtsrtleft {
+    width: 100%;
+}
+	.chartinfleft{
+		margin-top: 20px;
+	}
+	.gtssrttle{
+		max-width: 100%;
+	}	
+	
+		
+	.contactusfrmwrp {width:100%; padding:15px;}
+	
+	.cntotr{
+	margin: 5px 2px;    
+  box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.22);
+height: 35px;
+display: inline-block;
+font-size: 18px;
+color: #fff;
+line-height: 35px;
+ 
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+border-radius: 5px;
+min-width: 35px;
+	overflow: hidden;
+text-align: center;
+
+}
+	
+	
+.dashinfoboxwrper.fullwidth.pull-left {
+    width: 100%;
+    margin-left: 0;
+    margin-right:0;
+    float: left !important;
+}
+		
+	.dashinfoBox.col-xs-12{
+		padding: 0;
+	}	
+.col-xs-12.pdgT7{
+		padding-top: 0;
+	}	
+	/*............. Google captche style ................... */
+	
+.rc-anchor-normal {
+    height: 74px;
+    width: 100% !important;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+	.gcaptche iframe{
+		width: 100% !important;
+	}
+	
+	.rc-anchor-logo-portrait {
+    margin: 10px 0 0 5px !important;
+	}
+		/*............. Google captche style ends ................... */
+	
+	.ipclm.col-xs-3{
+		padding: 5px;
+	}
+	.row.ipadrsrw {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+}
+
+@media only screen and (max-width:640px){
+.howitboximage, .howitboxcontent, .howimgright .howitboximage {
+    width: 100%;
+    float: left;
+    text-align: left;
+}
+	.howitboximage{
+		padding: 15px;
+		max-width: 280px;
+	}
+	.howitboxwrp {
+
+    margin: 10px 0;
+}
+}
+@media only screen and (max-width:479px){
+		.gcaptche .g-recaptcha {
+    transform: scale(0.87);
+    transform-origin: 0 0;
+}
+	.chartiframe-panel{
+		padding-top: 90%;
+	}
+}
+@media only screen and (max-width:359px){
+	.loginrightIn {
+    width: 100%;
+	}
+
+}

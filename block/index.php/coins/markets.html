@@ -1,0 +1,612 @@
+<!doctype html>
+<html>
+
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--load meta data and contents-->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+    	<title>Obbip Blockchain - Markets</title>
+   	 <!-- Bootstrap -->
+	<link href="../../css/bootstrap.css" rel="stylesheet">
+	<link href="../../css/main.css" rel="stylesheet">
+	<link href="../../css/responsive.css" rel="stylesheet">
+	<link href="../../css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../css/select2.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600,700" rel="stylesheet">
+
+	<script src="../../js/jquery-1.11.3.min.js"></script>
+		
+		
+  </head>
+
+<body>
+ <header class="commonheader fullwidth">
+ 	<div class="main-container">
+ 	<div class="col-md-4 col-sm-9 col-xs-9">
+ 		<div class="headerlogo">
+ 			<a href="../../index.html"><img src="../../userdata/logo/logo.png" alt="Obbip Blockchain" title="Obbip Blockchain"></a>
+ 		</div>
+ 		</div>
+ 		<div class="menuright col-md-8 col-sm-3 col-xs-3">
+	        <div class="mobile-menu maingraycolor hidden-md visible-sm visible-xs">
+ 		<i class="fa fa-bars"></i>
+ 		<i class="fa fa-times"></i>
+ 		</div>
+ 			<ul class="menuUl list-unstyled barlowbold" id="menuUl">
+ 	<li class="menu-li"><a href="../../index.html" class="menu-a maingraycolor ">Home </a></li>
+	<li class="menu-li"><a href="markets.html" class="menu-a maingraycolor marketlink-a">Markets&nbsp; <i class="fa fa-bar-chart"></i>
+
+	</a>
+	
+	</li>
+
+
+<li class="menu-li"><a href="../home/howitworks.html" class="menu-a maingraycolor">How It Works</a></li>
+ <li class="menu-li"><a href="../account/register.html" class="menu-a maingraycolor">Register</a></li> 
+<li class="menu-li"><a href="../account/login.html" class="signinbtn btn-main btn barlowbold">Login</a></li> 
+
+   
+<!--LANGUAGE SECTION-->
+
+<li class="menu-li">
+	<div class="menulangugesl">
+	<span class="menlangicn"><i class="fa fa-globe"></i></span>
+		<select class="langugselct custom-select" style="width: 100%" id="publiclanguage" onchange="changeCurrentLanaguage()">
+<option value="1"  selected="selected"  >
+English</option>
+<option value="2"  >
+Spanish</option>
+<option value="3"  >
+French</option>
+<option value="4"  >
+Japanese</option>
+			
+		</select>
+		</div>
+ </li>   
+  
+<!--LANGUAGE SECTION-->                                                    
+ 				                                   
+ 			</ul>
+ 		</div>
+ 	</div>
+ 	<div class="headeroverlay"></div>
+ </header>
+
+<script type="text/javascript">
+		$(function(){
+    var current = location.pathname;
+    current = current.substring(current.lastIndexOf('../../index.html'));
+    
+
+    $('.menu-li a').each(function(){
+        var $this = $(this);
+        		var currentHref = $this.attr('href');
+		        if (typeof currentHref != "undefined") {
+		currentHref = currentHref.substring(currentHref.lastIndexOf('../../index.html'));
+		$this.removeClass('active');     
+            if(currentHref == current) {
+       $this.addClass('active');
+			}
+			
+
+
+		}
+    });
+});
+	
+function logout()
+{
+	$.ajax({
+	type: "POST",cache: false,
+	url:"http://inout-blockchain-altexchanger.demo.inoutscripts.net/index.php/account/logoutprocess",	
+		success: function(data)
+		{
+data=data.trim();
+
+
+		if(data=="success")
+		{
+		var redirecturl="../account/login.html";
+		window.location.href = redirecturl;
+		}
+		}
+	});
+}
+
+</script>
+<section class="mainareawraper fullwidth pull-left">
+    <div class="maincoinmarketslider mgnB20 fullwidth pull-left ">
+        <div class="main-container">
+            <div class="fullwidth mgnT30 mgnB30 pull-left">
+<h4  class="pull-left mgnT05 barlowbold marketmsghead">Price at Various Markets for <span id="mrktmsghd"> Bitcoin (BTC) </span> </h4>
+                <div class="col-md-6 col-sm-12 col-xs-12 pull-right curncy-label-outer row">
+                    <div class="col-md-6 col-sm-6 col-xs-12 curncy-label">Change Cryptocurrency</div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select class=" custom-select" style="width: 100%"
+                                id="marketcurrency"
+                                onchange="changemarketcurrency()">
+                                                        <option value="1"
+                                 selected="selected"                               >Bitcoin (BTC )</option>
+                                                        <option value="2"
+                                                              >Bitcoin Cash (BCH )</option>
+                                                        <option value="3"
+                                                              >Ethereum (ETH )</option>
+                          
+                        </select>
+                    </div>
+                </div>
+                <div class="dashinfoboxwrpernw fullwidth" id="marketpageboxwrapper"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="fullwidth pull-left">
+        <div class="main-container">
+            <div class="market-wraper fullwidth pull-left col-xs-12">
+
+<h3 class="fetbxh3 barlowregular maintextcolor  text-center"><i class="fa fa-bar-chart"></i> Markets  </h3>
+              		<div class="markettab-outer">
+                  <ul id="markettab"class="nav nav-tabs accountrightTabs">
+                                            <li class="active">
+                            <a class="maingraycolor" data-toggle="tab"
+                               href="#BTCTab"
+                               aria-expanded="true">
+                              Bitcoin (BTC)                            </a>
+                        </li>
+					  
+                                              <li class="">
+                            <a class="maingraycolor" data-toggle="tab"
+                               href="#ETHTab"
+                               aria-expanded="true">
+                              Ethereum (ETH)                            </a>
+                        </li>
+					  
+                                              <li class="">
+                            <a class="maingraycolor" data-toggle="tab"
+                               href="#ETCTab"
+                               aria-expanded="true">
+                              Ethereum Classic (ETC)                            </a>
+                        </li>
+					  
+                                              <li class="">
+                            <a class="maingraycolor" data-toggle="tab"
+                               href="#LTCTab"
+                               aria-expanded="true">
+                              Litecoin (LTC)                            </a>
+                        </li>
+					  
+                                              <li class="">
+                            <a class="maingraycolor" data-toggle="tab"
+                               href="#USDCTab"
+                               aria-expanded="true">
+                              USD Coin (USDC)                            </a>
+                        </li>
+					  
+                      					  </div>
+                  </ul>
+                              <div class="clearfix"></div>
+                <div class="tab-content fullwidth ">
+                  
+                        <div id="BTCTab"
+                             class="tab-pane fade fullwidth active in">
+
+                            <div class="fullwidth pull-left tabledash mgnB25">
+                                <div class="fullwidth pull-left mgnB05">
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="table-div fullwidth pull-left">
+                                  <table class="dytable table" cellpadding="0" cellspacing="0">
+		<thead>
+      	        <tr>
+        	 <th>Market </th><!--Market-->
+        	 <th>Currency </th><!--Currency-->
+        	 <th>Volume </th><!--Volume-->
+        	 <th>%Change </th><!--Change-->
+        	 <th>Last Price </th><!--Last Price-->
+        	 <th>24Hr High </th><!--24Hr High -->
+        	 <th>24Hr Low </th><!--24Hr Low -->
+     	      </tr>
+              </thead><tbody>
+  <tr>
+  <td><span class="mobilehead">Market </span>
+<a href="marketdetails/BTC-BCH.html" class="maintextcolor">BTC-BCH</a>
+   </td>
+ <td><span class="mobilehead">Currency</span>Bitcoin Cash&nbsp;(BCH) </td>
+         <td><span class="mobilehead">Volume</span>2735.104 BCH</td>
+         <td><span class="mobilehead">%Change</span><span class="text-success">12.7% <i class="fa fa-arrow-up"></i></span></td>
+         <td><span class="mobilehead">Last Price </span> 0.04956500 BTC</td>
+	 <td><span class="mobilehead">24Hr High</span> 0.05181500 BTC </td>
+         <td><span class="mobilehead">24Hr Low</span>0.04399560 BTC</td>
+        </tr>
+  <tr>
+  <td><span class="mobilehead">Market </span>
+<a href="marketdetails/BTC-ETH.html" class="maintextcolor">BTC-ETH</a>
+   </td>
+ <td><span class="mobilehead">Currency</span>Ethereum&nbsp;(ETH) </td>
+         <td><span class="mobilehead">Volume</span>3232.537 ETH</td>
+         <td><span class="mobilehead">%Change</span><span class="text-success">1.2% <i class="fa fa-arrow-up"></i></span></td>
+         <td><span class="mobilehead">Last Price </span> 0.02719930 BTC</td>
+	 <td><span class="mobilehead">24Hr High</span> 0.02719930 BTC </td>
+         <td><span class="mobilehead">24Hr Low</span>0.02688115 BTC</td>
+        </tr></tbody></table>                                </div>
+                            </div>
+                        </div>
+
+                      
+                        <div id="ETHTab"
+                             class="tab-pane fade fullwidth ">
+
+                            <div class="fullwidth pull-left tabledash mgnB25">
+                                <div class="fullwidth pull-left mgnB05">
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="table-div fullwidth pull-left">
+                                  <table class="dytable table" cellpadding="0" cellspacing="0">
+		<thead>
+      	        <tr>
+        	 <th>Market </th><!--Market-->
+        	 <th>Currency </th><!--Currency-->
+        	 <th>Volume </th><!--Volume-->
+        	 <th>%Change </th><!--Change-->
+        	 <th>Last Price </th><!--Last Price-->
+        	 <th>24Hr High </th><!--24Hr High -->
+        	 <th>24Hr Low </th><!--24Hr Low -->
+     	      </tr>
+              </thead><tbody>
+  <tr>
+  <td><span class="mobilehead">Market </span>
+<a href="marketdetails/ETH-BTC.html" class="maintextcolor">ETH-BTC</a>
+   </td>
+ <td><span class="mobilehead">Currency</span>Bitcoin&nbsp;(BTC) </td>
+         <td><span class="mobilehead">Volume</span>3143.633 BTC</td>
+         <td><span class="mobilehead">%Change</span> <span class="text-danger">-1.1% <i class="fa fa-arrow-down"></i></span></td>
+         <td><span class="mobilehead">Last Price </span> 36.80981595 ETH</td>
+	 <td><span class="mobilehead">24Hr High</span> 37.21105055 ETH </td>
+         <td><span class="mobilehead">24Hr Low</span>36.80981595 ETH</td>
+        </tr>
+  <tr>
+  <td><span class="mobilehead">Market </span>
+<a href="marketdetails/ETH-BCH.html" class="maintextcolor">ETH-BCH</a>
+   </td>
+ <td><span class="mobilehead">Currency</span>Bitcoin Cash&nbsp;(BCH) </td>
+         <td><span class="mobilehead">Volume</span>2671.655 BCH</td>
+         <td><span class="mobilehead">%Change</span><span class="text-success">9.7% <i class="fa fa-arrow-up"></i></span></td>
+         <td><span class="mobilehead">Last Price </span> 1.77360648 ETH</td>
+	 <td><span class="mobilehead">24Hr High</span> 1.84455719 ETH </td>
+         <td><span class="mobilehead">24Hr Low</span>1.61605554 ETH</td>
+        </tr></tbody></table>                                </div>
+                            </div>
+                        </div>
+
+                      
+                        <div id="ETCTab"
+                             class="tab-pane fade fullwidth ">
+
+                            <div class="fullwidth pull-left tabledash mgnB25">
+                                <div class="fullwidth pull-left mgnB05">
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="table-div fullwidth pull-left">
+                                  <table class="dytable table" cellpadding="0" cellspacing="0">
+		<thead>
+      	        <tr>
+        	 <th>Market </th><!--Market-->
+        	 <th>Currency </th><!--Currency-->
+        	 <th>Volume </th><!--Volume-->
+        	 <th>%Change </th><!--Change-->
+        	 <th>Last Price </th><!--Last Price-->
+        	 <th>24Hr High </th><!--24Hr High -->
+        	 <th>24Hr Low </th><!--24Hr Low -->
+     	      </tr>
+              </thead><tbody>
+  <tr>
+  <td><span class="mobilehead">Market </span>
+<a href="marketdetails/ETC-BTC.html" class="maintextcolor">ETC-BTC</a>
+   </td>
+ <td><span class="mobilehead">Currency</span>Bitcoin&nbsp;(BTC) </td>
+         <td><span class="mobilehead">Volume</span>2353.580 BTC</td>
+         <td><span class="mobilehead">%Change</span> <span class="text-danger">-0.7% <i class="fa fa-arrow-down"></i></span></td>
+         <td><span class="mobilehead">Last Price </span> 865.80086580 ETC</td>
+	 <td><span class="mobilehead">24Hr High</span> 873.36244541 ETC </td>
+         <td><span class="mobilehead">24Hr Low</span>865.80086580 ETC</td>
+        </tr>
+  <tr>
+  <td><span class="mobilehead">Market </span>
+<a href="marketdetails/ETC-BCH.html" class="maintextcolor">ETC-BCH</a>
+   </td>
+ <td><span class="mobilehead">Currency</span>Bitcoin Cash&nbsp;(BCH) </td>
+         <td><span class="mobilehead">Volume</span>2702.953 BCH</td>
+         <td><span class="mobilehead">%Change</span><span class="text-success">14.3% <i class="fa fa-arrow-up"></i></span></td>
+         <td><span class="mobilehead">Last Price </span> 42.42028986 ETC</td>
+	 <td><span class="mobilehead">24Hr High</span> 43.62224554 ETC </td>
+         <td><span class="mobilehead">24Hr Low</span>37.12183476 ETC</td>
+        </tr></tbody></table>                                </div>
+                            </div>
+                        </div>
+
+                      
+                        <div id="LTCTab"
+                             class="tab-pane fade fullwidth ">
+
+                            <div class="fullwidth pull-left tabledash mgnB25">
+                                <div class="fullwidth pull-left mgnB05">
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="table-div fullwidth pull-left">
+                                  <table class="dytable table" cellpadding="0" cellspacing="0">
+		<thead>
+      	        <tr>
+        	 <th>Market </th><!--Market-->
+        	 <th>Currency </th><!--Currency-->
+        	 <th>Volume </th><!--Volume-->
+        	 <th>%Change </th><!--Change-->
+        	 <th>Last Price </th><!--Last Price-->
+        	 <th>24Hr High </th><!--24Hr High -->
+        	 <th>24Hr Low </th><!--24Hr Low -->
+     	      </tr>
+              </thead><tbody>
+  <tr>
+  <td><span class="mobilehead">Market </span>
+<a href="marketdetails/LTC-BTC.html" class="maintextcolor">LTC-BTC</a>
+   </td>
+ <td><span class="mobilehead">Currency</span>Bitcoin&nbsp;(BTC) </td>
+         <td><span class="mobilehead">Volume</span>1661.508 BTC</td>
+         <td><span class="mobilehead">%Change</span><span class="text-success">0.3% <i class="fa fa-arrow-up"></i></span></td>
+         <td><span class="mobilehead">Last Price </span> 126.98412698 LTC</td>
+	 <td><span class="mobilehead">24Hr High</span> 127.63241863 LTC </td>
+         <td><span class="mobilehead">24Hr Low</span>126.50221379 LTC</td>
+        </tr>
+  <tr>
+  <td><span class="mobilehead">Market </span>
+<a href="marketdetails/LTC-BCH.html" class="maintextcolor">LTC-BCH</a>
+   </td>
+ <td><span class="mobilehead">Currency</span>Bitcoin Cash&nbsp;(BCH) </td>
+         <td><span class="mobilehead">Volume</span>3035.049 BCH</td>
+         <td><span class="mobilehead">%Change</span><span class="text-success">30.9% <i class="fa fa-arrow-up"></i></span></td>
+         <td><span class="mobilehead">Last Price </span> 6.15138451 LTC</td>
+	 <td><span class="mobilehead">24Hr High</span> 6.15138451 LTC </td>
+         <td><span class="mobilehead">24Hr Low</span>4.69888412 LTC</td>
+        </tr></tbody></table>                                </div>
+                            </div>
+                        </div>
+
+                      
+                        <div id="USDCTab"
+                             class="tab-pane fade fullwidth ">
+
+                            <div class="fullwidth pull-left tabledash mgnB25">
+                                <div class="fullwidth pull-left mgnB05">
+
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="table-div fullwidth pull-left">
+                                  <table class="dytable table" cellpadding="0" cellspacing="0">
+		<thead>
+      	        <tr>
+        	 <th>Market </th><!--Market-->
+        	 <th>Currency </th><!--Currency-->
+        	 <th>Volume </th><!--Volume-->
+        	 <th>%Change </th><!--Change-->
+        	 <th>Last Price </th><!--Last Price-->
+        	 <th>24Hr High </th><!--24Hr High -->
+        	 <th>24Hr Low </th><!--24Hr Low -->
+     	      </tr>
+              </thead><tbody>
+  <tr>
+  <td><span class="mobilehead">Market </span>
+<a href="marketdetails/USDC-BCH.html" class="maintextcolor">USDC-BCH</a>
+   </td>
+ <td><span class="mobilehead">Currency</span>Bitcoin Cash&nbsp;(BCH) </td>
+         <td><span class="mobilehead">Volume</span>0.000 BCH</td>
+         <td><span class="mobilehead">%Change</span><span class="text-success">100.0% <i class="fa fa-arrow-up"></i></span></td>
+         <td><span class="mobilehead">Last Price </span> 0.00000000 USDC</td>
+	 <td><span class="mobilehead">24Hr High</span> 0.00000000 USDC </td>
+         <td><span class="mobilehead">24Hr Low</span>0.00000000 USDC</td>
+        </tr></tbody></table>                                </div>
+                            </div>
+                        </div>
+
+                                      </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+<link href="../../css/dataTables.min.css" rel="stylesheet">
+<script src="../../js/dataTables.min.js"></script>
+
+<!-- Slick slider -->
+
+<link rel="stylesheet" type="text/css" href="../../css/slick.css">
+<link rel="stylesheet" type="text/css" href="../../css/slick-theme.css">
+<script type="text/javascript" src="../../js/slick.min.js"></script>
+<script type="text/javascript" src="../../js/jquery.nicescroll.min.js"></script>
+<!-- nice Scroll  -->
+<script>
+	$(function(){
+		$(".markettab-outer").niceScroll();
+	});
+</script>
+<!-- Slick slider  -->
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+	 
+	  
+	  var totalWidth = 0;
+
+	  $("#markettab").children("li").each(function() {
+      totalWidth = totalWidth + $(this).width();
+	  });
+	  $("#markettab").css({"width":totalWidth});
+
+
+    $('.dytable').dataTable({
+      responsive: true,
+      retrieve: true,
+      "language": {
+          "decimal":        "",
+                           "emptyTable":     "No Results Found.",
+                           "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+                           "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                           "infoFiltered":   "(filtered from _MAX_ total entries)",
+                           "infoPostFix":    "",
+                           "thousands":      ",",
+                           "lengthMenu":     "Show _MENU_ Entries",
+                           "loadingRecords": "Loading...",
+                           "processing":     "Processing...",
+                           "search":         "Search:",
+                           "zeroRecords":    "No matching records found",
+                           "paginate": {
+                               "first":      "First",
+                               "last":       "Last",
+                               "next":       "Next",
+                               "previous":   "Previous"
+                           },
+                           "aria": {
+                               "sortAscending":  ": activate to sort column ascending",
+                               "sortDescending": ": activate to sort column descending"
+                           }      },
+      "order": [[2, "desc"]]
+    });
+
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    changemarketcurrency();
+  });
+
+  function changemarketcurrency() {
+    var marketcurrency = document.getElementById("marketcurrency").value.trim();
+    var tourl = "update_marketboxslider.html";
+    var datastr = "marketcurrency=" + marketcurrency+"&displaylimit=4";;
+
+    $.ajax({
+      type: "POST",
+      url: tourl,
+      data: datastr,
+      success: function (data) {
+        data = data.trim();
+        var details = data.split("???");
+        var msg = details[0];
+        var mainmarkets_numrows = details[1];
+        var cointxt=details[3];
+        $("#mrktmsghd").html(cointxt);
+        var numrows = parseInt(mainmarkets_numrows, 10);
+        if (numrows < 4) {
+          $("#marketpageboxwrapper").html(msg);
+        }
+        else {
+          msg = msg + details[2];
+          $("#marketpageboxwrapper").html(msg);
+        }
+      }
+
+    });
+  }
+</script>
+<script type="text/javascript">
+          function changeCurrentLanaguage()
+          {
+            var sellang=$("#publiclanguage").val();
+            Set_Cookie('inoutio_language',sellang,0, "../../index.html") ;
+            window.location.href = window.location.href;          
+          }  
+          function Set_Cookie( name, value, expires, path, domain, secure ) 
+           {	
+             document.cookie = name + "=" +escape( value ) +
+		( ( path ) ? ";path=" + path : "" ) + 
+		( ( domain ) ? ";domain=" + domain : "" ) +
+		( ( secure ) ? ";secure" : "" );
+           }
+	  </script>
+<footer class="commonfooter text-center fullwidth pull-left">
+
+	<div class="main-container">
+	<div class="text-center footersocial">
+		<ul class="footersocial list-unstyled">
+<li class="footersocialLI"><a class="social-a facebooksocial" target="_blank" href="https://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+<li class="footersocialLI"><a class="social-a twitersocial" target="_blank" href="https://twitter.com"><i class="fa fa-twitter"></i></a></li>
+<li class="footersocialLI"><a class="social-a twitersocial" target="_blank" href="https://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+		</ul>
+	</div>
+	<div class="clearfix"></div>
+	<div class="footerlinks">
+		<ul class="footerlinkul list-unstyled">
+<li class="footerlinkli"><a href="../home/about.html" class="footerlinks-a">About</a></li>
+<li class="footerlinkli"><a href="../home/terms.html" class="footerlinks-a">Terms and Conditions</a></li>
+<li class="footerlinkli"><a href="../home/howitworks.html" class="footerlinks-a">How It Works</a></li>
+<li class="footerlinkli"><a href="../home/fees.html" class="footerlinks-a">Fees</a></li>
+<li class="footerlinkli"><a href="../home/privacy.html" class="footerlinks-a">Privacy Policy</a></li>
+<li class="footerlinkli"><a href="../home/contactus.html" class="footerlinks-a">Contact Us</a></li>
+
+<!--Addon compactability -->
+<!--Addon compactability -->
+		</ul>
+	</div>
+
+
+	<div class="clearfix"></div>
+	<p class="cpyryttxt">&copy; 2018 @ Obbip Blockchain </p>
+	</div>
+	
+	
+
+</footer>
+<div class="successmessagepop comnmsgwrpnew" id="successdivnew">
+	<h4>Success</h4>
+	<p> </p>
+</div>
+
+
+<div class="successmessagepop comnmsgwrp" id="successdiv">
+	<h4>Success</h4>
+	<p> </p>
+</div>
+
+<div class="errormessagepop comnmsgwrp" id="errordiv">
+	<h4>Error</h4>
+	<p> </p>
+</div>
+	
+	<!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="../../js/bootstrap.js"></script>
+	<script src="../../js/select2.full.min.js"></script>
+	<script src="../../js/common.js"></script>
+	<script type="text/javascript">
+	  $(function(){
+	  
+	  });
+	  </script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-128590405-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-128590405-1');
+</script>
+  </body>
+
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html style="width:100%; height:100%;">
+
+
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+
+    <title>TradingView Charting Library - Obbip Blockchain  </title>
+
+    <!-- Fix for iOS Safari zooming bug -->
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+
+    <script type="text/javascript"
+            src="charting_library/charting_library.min.js"></script>
+    <script type="text/javascript"
+            src="datafeeds/udf/dist/polyfills.js"></script>
+    <script type="text/javascript" src="datafeeds/udf/dist/bundle.js"></script>
+
+    <script type="text/javascript">
+
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+
+      TradingView.onready(function () {
+
+
+        var datafeedURL = window.location.pathname + "chart_content/master.php";
+
+
+        var widget = window.tvWidget = new TradingView.widget({
+          debug: false,
+          fullscreen: false,
+          symbol: 'ETC-BCH',
+          interval: '5',
+          container_id: "tv_chart_container",
+          datafeed: new Datafeeds.UDFCompatibleDatafeed(datafeedURL),
+          timezone: 'Asia/Kolkata',
+          library_path: "charting_library/",
+          locale: getParameterByName('lang') || "en",
+          drawings_access: {type: 'black', tools: [{name: "Regression Trend"}]},
+          disabled_features: [
+            "header_symbol_search",
+            "symbol_search_hot_key",
+            "header_compare",
+            "header_screenshot",
+            "use_localstorage_for_settings",
+            "header_fullscreen_button",
+            "header_saveload",
+            "display_market_status",
+            "go_to_date",
+            "study_templates",
+            "context_menus",
+
+          ],
+          enabled_features: [
+            "hide_left_toolbar_by_default",
+            "dont_show_boolean_study_arguments",
+            "hide_last_na_study_output",
+
+
+          ],
+          charts_storage_url: 'http://saveload.tradingview.com',
+          charts_storage_api_version: "1.1",
+          client_id: 'tradingview.com',
+          user_id: 'public_user_id',
+          autosize: true,
+          time_frames: [],
+
+        });
+        widget.onChartReady(function () {
+          widget.chart().executeActionById("timeScaleReset");
+          widget.chart().onIntervalChanged().subscribe(null, function (interval, obj) {
+            obj.timeframe = interval;
+
+            var symbol = widget.chart().resolution();
+            widget.chart().setResolution(interval, function () {
+              var symbol = widget.chart().resolution();
+            });
+
+
+          });//interval change ends
+        });//chart ready ends
+      });//tv ready ends
+
+    </script>
+
+</head>
+
+<body style="margin:0px; width:100%; height:100%;">
+<div id="tv_chart_container" style="height:100%; width:100%;"></div>
+
+</body>
+
+
+
+</html>
